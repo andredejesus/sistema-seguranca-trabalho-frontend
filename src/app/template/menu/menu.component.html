@@ -1,10 +1,11 @@
 <div class="menu">
     
     <i class="fa fa-times" aria-hidden="true"></i>
-    <div class="item item-dashboard" >
-        <a href="#" class="btn"><i class="fa fa-tachometer" aria-hidden="true"></i>Dashboard</a>
+    <div class="item item-dashboard" style="background-color: #f1f1f1;">
+        <a routerLink="/dashboard" class="btn"><i class="fa fa-tachometer" aria-hidden="true"></i>Dashboard</a>
     </div>
 
+  
     <div class="item" id="item-colaborador">
         <i class="fa fa-users" aria-hidden="true"></i><label for="check-colaborador">Colaborador</label>
         <input type="checkbox" id="check-colaborador"/>
@@ -50,8 +51,8 @@
         </div>
     </div>
 
-    <div class="item" id="item-logout">
-        <a href="#" class="btn"><i class="fa fa-user-md"></i>Logout</a>
+    <div class="item" id="item-logout" style="background-color: #f1f1f1;">
+        <a (click)="encerrarSessao()" class="btn"><i class="fa fa-user-md"></i>Logout</a>
     </div>
 
 </div>

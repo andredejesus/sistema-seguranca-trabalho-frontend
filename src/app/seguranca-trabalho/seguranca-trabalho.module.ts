@@ -10,6 +10,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { ColaboradorListComponent } from './paginas/colaborador/colaborador-list/colaborador-list.component';
 import { MsgSucessoComponent } from './alertas/msg-sucesso/msg-sucesso.component';
 import { MsgErroComponent } from './alertas/msg-erro/msg-erro.component';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { TokenInterceptor } from '../controller/token.interceptor';
 
 @NgModule({
   declarations: [
@@ -28,7 +30,9 @@ import { MsgErroComponent } from './alertas/msg-erro/msg-erro.component';
   exports:[
     ColaboradorFormComponent
   ],
-  providers: []
+  providers: [
+
+  ]
 })
 export class SegurancaTrabalhoModule { 
   

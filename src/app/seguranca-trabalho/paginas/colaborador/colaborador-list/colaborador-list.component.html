@@ -24,19 +24,19 @@
                     <label for="rg">RG</label>
                     <input type="text" class="form-control" name="rg" [(ngModel)]="colaborador.rg" id="rg" placeholder="RG">
                 </div>
-                <div class="form-group col">
+                <div class="form-group col-sm-3">
                     <label for="cpf">CPF</label>
                     <input type="text" class="form-control" name="cpf" [(ngModel)]="colaborador.cpf" id="cpf" >
                 </div>
                 <div class="form-group col">
-                    <label for="nascimento">Data de Nascimento</label>
+                    <label for="nascimento">D. Nascimento</label>
                     <input type="date" class="form-control" name="nascimento" [(ngModel)]="colaborador.data_nascimento" id="nascimento">
                 </div>
             </div>
 
             <div class="form-row">
                 <div class="form-group col-sm-2">
-                    <label for="data-admissao">Data Admissão</label>
+                    <label for="data-admissao">D. Admissão</label>
                     <input type="date" class="form-control" name="data-admissao" [(ngModel)]="colaborador.dadosEmpresa.data_admissao" id="data-admissao">
                 </div>
                 <div class="form-group col">
@@ -150,22 +150,22 @@
         <ul>
             <li>
                 <span class="titulo">Nome:</span>
-                <span>{{colaborador.nome}}</span>
+                <span>{{colaboradorDetalhes.nome}}</span>
             </li>
 
             <li>
                 <span class="titulo">Nascimento:</span>
-                <span>{{colaborador.data_nascimento}}</span>
+                <span>{{colaboradorDetalhes.data_nascimento}}</span>
             </li>
 
             <li>
                 <span class="titulo">RG:</span>
-                <span>{{colaborador.rg}}</span>
+                <span>{{colaboradorDetalhes.rg}}</span>
             </li>
 
             <li>
                 <span class="titulo">CPF:</span>
-                <span>{{colaborador.cpf}}</span>
+                <span>{{colaboradorDetalhes.cpf}}</span>
             </li>
         </ul>
 
@@ -174,27 +174,27 @@
         <ul>
             <li>
                 <span class="titulo">Função:</span>
-                <span>{{colaborador.dadosEmpresa.funcao}}</span>
+                <span>{{colaboradorDetalhes.dadosEmpresa.funcao}}</span>
             </li>
 
             <li>
                 <span class="titulo">Lotação:</span>
-                <span>{{colaborador.dadosEmpresa.lotacao}}</span>
+                <span>{{colaboradorDetalhes.dadosEmpresa.lotacao}}</span>
             </li>
 
             <li>
                 <span class="titulo">Departamento:</span>
-                <span>{{colaborador.dadosEmpresa.departamento}}</span>
+                <span>{{colaboradorDetalhes.dadosEmpresa.departamento}}</span>
             </li>
 
             <li>
                 <span class="titulo">Data de Admissão:</span>
-                <span>{{colaborador.dadosEmpresa.data_admissao}}</span>
+                <span>{{colaboradorDetalhes.dadosEmpresa.data_admissao}}</span>
             </li>
 
             <li>
                 <span class="titulo">Situação:</span>
-                <span>{{colaborador.dadosEmpresa.situacao}}</span>
+                <span>{{colaboradorDetalhes.dadosEmpresa.situacao}}</span>
             </li>
         </ul>
         

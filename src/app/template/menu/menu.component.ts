@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from './../../controller/service/auth.service';
 
 @Component({
   selector: 'app-menu',
@@ -7,19 +8,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MenuComponent implements OnInit {
 
-  constructor() { }
+    
+
+  constructor(private authService: AuthService) { }
 
   ngOnInit() {
-
-   //document.querySelector('#item-colaborador .btn').addEventListener('click', ()=>{
-        //document.querySelector('#item-colaborador .sub-menu').classList.toggle('show');
-   //})
 
    document.querySelector('.menu .fa-times').addEventListener('click', ()=>{
       document.querySelector('.menu .fa-times').classList.remove('show');
       document.querySelector('aside').classList.remove('show');
    })
 
+  }
+
+  encerrarSessao(){
+    this.authService.encerrarSessao();
   }
 
 }

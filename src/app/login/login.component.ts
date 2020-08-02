@@ -25,7 +25,7 @@ export class LoginComponent implements OnInit {
         const access_token = JSON.stringify(res);
         localStorage.setItem('access_token', access_token);
 
-        this.route.navigate(['colaborador-list']);
+        this.route.navigate(['dashboard']);
     }, error =>{
       
         console.log('Ocorreu um erro ao gerar o token de acesso.');

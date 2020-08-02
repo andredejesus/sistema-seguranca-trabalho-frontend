@@ -16,17 +16,18 @@ export class ColaboradorListComponent implements OnInit, OnDestroy {
   colaboradoresTeste;
   colaboradores: Colaborador [] = [];
   colaborador: Colaborador = new Colaborador();
+  colaboradorDetalhes: Colaborador = new Colaborador();
 
   metodosModalRef: BsModalRef;
 
   inscricao: Subscription;
 
-  @ViewChild(MsgSucessoComponent, {static:false}) msgSucesso: MsgSucessoComponent;
-  @ViewChild(MsgErroComponent, {static:false}) msgErro: MsgErroComponent;
+  @ViewChild(MsgSucessoComponent, {static: false}) msgSucesso: MsgSucessoComponent;
+  @ViewChild(MsgErroComponent, {static: false}) msgErro: MsgErroComponent;
 
-  @ViewChild('modalDeletar', {static:false}) templateModalDeletar;
+  @ViewChild('modalDeletar', {static: false}) templateModalDeletar;
 
-  @ViewChild('modalDadosDetalhados', {static:false}) templateModalDetalhe;
+  @ViewChild('modalDadosDetalhados', {static: false}) templateModalDetalhe;
 
   constructor(private colaboradorService: ColaboradorService,
               private router: Router,
@@ -36,6 +37,7 @@ export class ColaboradorListComponent implements OnInit, OnDestroy {
       this.listaColaboradores();
 
       this.colaborador.dadosEmpresa = new DadosEmpresa();
+      this.colaboradorDetalhes.dadosEmpresa = new DadosEmpresa();
 
 
     /*this.colaboradoresTeste = [
@@ -91,7 +93,7 @@ export class ColaboradorListComponent implements OnInit, OnDestroy {
 
 
   abrirModalDetalhe(id){
-    this.inscricao = this.colaboradorService.buscarColaborador(id).subscribe(res => this.colaborador = res);
+    this.inscricao = this.colaboradorService.buscarColaborador(id).subscribe(res => this.colaboradorDetalhes = res);
     this.metodosModalRef = this.modalService.show(this.templateModalDetalhe, {class: 'modal-sm-2'})
   }
 

@@ -17,8 +17,8 @@ export class ColaboradorFormComponent implements OnInit {
 
   colaborador: Colaborador = new Colaborador();
 
-  @ViewChild(MsgSucessoComponent, {static:false}) msgSucesso: MsgSucessoComponent;
-  @ViewChild(MsgErroComponent, {static:false}) msgErro: MsgErroComponent
+  @ViewChild(MsgSucessoComponent, {static: false}) msgSucesso: MsgSucessoComponent;
+  @ViewChild(MsgErroComponent, {static: false}) msgErro: MsgErroComponent
 
   constructor(private colaboradorService: ColaboradorService,
               private route: ActivatedRoute,
