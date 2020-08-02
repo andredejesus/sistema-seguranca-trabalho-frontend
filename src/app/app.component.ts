@@ -6,5 +6,14 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'sastec';
+
+  ngOnInit() {
+
+    //document.querySelector('header i').addEventListener('click', ()=>{
+       // document.querySelector('aside').classList.toggle('show');
+       // document.querySelector('.menu .fa-times').classList.add('show');
+    //})
+
+}
+
 }

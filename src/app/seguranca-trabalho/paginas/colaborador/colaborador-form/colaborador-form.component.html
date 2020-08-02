@@ -1,0 +1,92 @@
+
+<app-msg-sucesso></app-msg-sucesso>
+<app-msg-erro></app-msg-erro>
+
+<div class="header">
+    <h5>Cadastrar</h5>
+    <a role="button" style="display:none;" routerLink="/colaborador-list" class="btn btn-default">Consultar Colaborador</a>
+</div>
+
+<div class="card">
+    <!--<div class="card-header">
+      Novo
+    </div>-->
+    <div class="card-body">
+
+        <form #form="ngForm" (ngSubmit)="salvarColaborador(); form.reset()">
+            <div class="row">
+                <input type="hidden" class="form-control" [(ngModel)]="colaborador.id" name="id" id="id">
+                <div class="col-md-12">
+                    <label for="colaborador">Nome </label>
+                    <input type="text" class="form-control" [(ngModel)]="colaborador.nome" name="colaborador" id="colaborador" placeholder="Nome do colaborador">
+                </div>
+
+                <div class="col-md-4">
+                    <label for="rg">RG</label>
+                    <input type="text" class="form-control" [(ngModel)]="colaborador.rg" name="rg" id="rg" placeholder="RG">
+                </div>
+                
+                <div class="col-md-4">
+                    <label for="cpf">CPF</label>
+                    <input type="text" [(ngModel)]="colaborador.cpf" name="cpf" class="form-control" id="cpf" placeholder="CPF">
+                </div>
+
+                <div class="col-md-4">
+                    <label for="nascimento">Data Nascimento</label>
+                    <input type="date" [(ngModel)]="colaborador.data_nascimento" name="nascimento" class="form-control" id="nascimento">
+                </div>
+
+                <div class="col-md-4">
+                    <label for="data_admissao">Data Admissão</label>
+                    <input type="date" [(ngModel)]="colaborador.dadosEmpresa.data_admissao" name="data_admissao" class="form-control" id="data_admissao">
+                </div>
+
+                <div class="col-md-4">
+                    <label for="funcao">Função</label>
+                    <select class="form-control" id="funcao" [(ngModel)]="colaborador.dadosEmpresa.funcao" name="funcao">
+                        <option selected>Selecione..</option>
+                        <option>Auxilar de Escritório</option>
+                        <option>Assist. Administrativo II</option>
+                        <option>Chefe de Setor</option>
+                      </select>
+                </div>
+
+                <div class="col-md-4">
+                    <label for="departamento">Departamento</label>
+                    <select class="form-control" id="departamento" [(ngModel)]="colaborador.dadosEmpresa.departamento" name="departamento">
+                        <option selected>Selecione..</option>
+                        <option>Satélite Construção</option>
+                      </select>
+                </div>
+
+                <div class="col-md-6">
+                    <label for="lotacao">Lotação</label>
+                    <select class="form-control" id="lotacao" [(ngModel)]="colaborador.dadosEmpresa.lotacao" name="lotacao">
+                        <option selected>Selecione..</option>
+                        <option>ADM I</option>
+                        <option>ADM II</option>
+                        <option>Porto Seguro</option>
+                        <option>Central Park</option>
+                        <option>Tercerizado</option>
+                        <option>TGS</option>
+                      </select>
+                </div>
+
+                <div class="col-md-6">
+                    <label for="situacao">Situação</label>
+                    <select class="form-control" id="situacao" [(ngModel)]="colaborador.dadosEmpresa.situacao" name="situacao">
+                        <option selected>Selecione..</option>
+                        <option>Ativo</option>
+                        <option>Demitido</option>
+                        <option>INSS</option>
+                      </select>
+                </div>
+            </div>
+
+            <button type="submit" class="btn btn-default mt-1">Salvar</button>
+
+        </form>
+      
+    </div>
+  </div>
+

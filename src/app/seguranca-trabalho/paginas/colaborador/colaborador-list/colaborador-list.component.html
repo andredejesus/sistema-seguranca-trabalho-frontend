@@ -1,0 +1,204 @@
+<app-msg-sucesso></app-msg-sucesso>
+<app-msg-erro></app-msg-erro>
+
+<header>
+    <h6>Colaboradores</h6>
+    <button type="button" class="btn btn-default" style="display:none;" routerLink="/colaborador-form">Cadastrar Colaborador</button>
+</header>
+
+<div class="card card-filtro">
+
+    <div class="card-header">
+        <i class="fa fa-filter" aria-hidden="true"></i> Filtro
+    </div>
+    <div class="card-body">
+
+        <form #form="ngForm" (ngSubmit)="filtroColaboradores()" class="form-filtro">
+
+            <div class="form-row" style="display: flex; flex-wrap: wrap;">
+                <div class="form-group col">
+                    <label for="nome">Nome</label>
+                    <input type="text" class="form-control" name="nome" [(ngModel)]="colaborador.nome" id="nome" placeholder="Nome do colaborador">
+                </div>
+                <div class="form-group col-sm-3">
+                    <label for="rg">RG</label>
+                    <input type="text" class="form-control" name="rg" [(ngModel)]="colaborador.rg" id="rg" placeholder="RG">
+                </div>
+                <div class="form-group col">
+                    <label for="cpf">CPF</label>
+                    <input type="text" class="form-control" name="cpf" [(ngModel)]="colaborador.cpf" id="cpf" >
+                </div>
+                <div class="form-group col">
+                    <label for="nascimento">Data de Nascimento</label>
+                    <input type="date" class="form-control" name="nascimento" [(ngModel)]="colaborador.data_nascimento" id="nascimento">
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group col-sm-2">
+                    <label for="data-admissao">Data Admissão</label>
+                    <input type="date" class="form-control" name="data-admissao" [(ngModel)]="colaborador.dadosEmpresa.data_admissao" id="data-admissao">
+                </div>
+                <div class="form-group col">
+                    <label for="funcao">Função</label>
+                    <select class="form-control" id="funcao" name="funcao" [(ngModel)]="colaborador.dadosEmpresa.funcao">
+                        <option selected>Selecione..</option>
+                        <option>Auxilar de Escritório</option>
+                        <option>Assist. Administrativo II</option>
+                        <option>Chefe de Setor</option>
+                      </select>
+                </div>
+                <div class="form-group col-sm-3">
+                    <label for="departamento">Departamento</label>
+                    <select class="form-control" id="departamento" name="departamento" [(ngModel)]="colaborador.dadosEmpresa.departamento">
+                        <option selected>Selecione..</option>
+                        <option>Satélite Construção</option>
+                      </select>
+                </div>
+                <div class="form-group col-sm">
+                    <label for="lotacao">Lotação</label>
+                    <select class="form-control" id="lotacao" name="lotacao" [(ngModel)]="colaborador.dadosEmpresa.lotacao">
+                        <option selected>Selecione..</option>
+                        <option>ADM I</option>
+                        <option>ADM II</option>
+                        <option>Porto Seguro</option>
+                        <option>Central Park</option>
+                        <option>Tercerizado</option>
+                        <option>TGS</option>
+                      </select>
+                </div>
+
+                <div class="form-group col-sm-2">
+                    <label for="situacao">Situação</label>
+                    <select class="form-control" id="situacao" name="situacao" [(ngModel)]="colaborador.dadosEmpresa.situacao">
+                        <option selected>Selecione..</option>
+                        <option>Ativo</option>
+                        <option>Demitido</option>
+                        <option>INSS</option>
+                      </select>
+                </div>
+            </div>
+
+            <button type="submit" class="btn btn-default">Pesquisar</button>
+ 
+        </form>
+      
+    </div>
+
+</div>
+
+<h6>Resultado</h6>
+
+<div class="card">
+    <div class="card-body" style="display: flex; justify-content: space-between; padding: 10px 10px;">
+        
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Colaborador</th>
+                    <th class="coluna-table-tablet">Função</th>
+                    <th class="coluna-table-notebook">Departamento</th>
+                    <th>Ação</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let colaborador of colaboradores">
+                    <td>{{colaborador.nome}}</td>
+                    <td class="coluna-table-tablet">{{colaborador.dadosEmpresa.funcao}}</td>
+                    <td class="coluna-table-notebook">{{colaborador.dadosEmpresa.departamento}}</td>
+                    <td>
+                        <a role="button" class="btn btn-default" (click)="abrirModalDetalhe(colaborador.id)" style="background-color:#16a085;">
+                            <i class="fa fa-search" aria-hidden="true"></i>
+                        </a>
+
+                        <a role="button" class="btn btn-warning btn-notebook" (click)="buscarColaborador(colaborador)"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+                        <a role="button" class="btn btn-danger btn-notebook" (click)="abrirModal(colaborador.id)"><i class="fa fa-trash" aria-hidden="true"></i></a>
+                        
+                    </td>
+                </tr>
+            </tbody> 
+        </table>
+
+        
+    </div>
+</div>  
+
+<ng-template #modalDeletar>
+
+    <div class="modal-header bg-danger " style="display: flex; justify-content: center;">
+        <h6 class="modal-title text-light" style="height: 20px;" >Confirmação</h6>
+      </div>
+
+      <div class="modal-body text-center" >
+        <p>Tem certeza que deseja deletar esse colaborador?</p>
+        <button type="button" class="btn btn-default" style="font-size: 15px;" (click)="confirmarDelecao()">Sim</button>
+        <button type="button" class="btn btn-primary" style="font-size: 15px; padding: 5px;" (click)="FecharModal()">Não</button>
+      </div>
+
+  </ng-template>
+
+  <ng-template #modalDadosDetalhados>
+
+    <div class="modal-header" style="display: flex; justify-content: center; background-color: #16a085;">
+        <h6 class="modal-title text-light" style="height: 20px;">Dados Detalhados</h6>
+      </div>
+
+      <div class="modal-body modalDetalhes" >
+
+        <h6>Dados Pessoais</h6>
+       
+        <ul>
+            <li>
+                <span class="titulo">Nome:</span>
+                <span>{{colaborador.nome}}</span>
+            </li>
+
+            <li>
+                <span class="titulo">Nascimento:</span>
+                <span>{{colaborador.data_nascimento}}</span>
+            </li>
+
+            <li>
+                <span class="titulo">RG:</span>
+                <span>{{colaborador.rg}}</span>
+            </li>
+
+            <li>
+                <span class="titulo">CPF:</span>
+                <span>{{colaborador.cpf}}</span>
+            </li>
+        </ul>
+
+        <h6>Dados Empresariais</h6>
+
+        <ul>
+            <li>
+                <span class="titulo">Função:</span>
+                <span>{{colaborador.dadosEmpresa.funcao}}</span>
+            </li>
+
+            <li>
+                <span class="titulo">Lotação:</span>
+                <span>{{colaborador.dadosEmpresa.lotacao}}</span>
+            </li>
+
+            <li>
+                <span class="titulo">Departamento:</span>
+                <span>{{colaborador.dadosEmpresa.departamento}}</span>
+            </li>
+
+            <li>
+                <span class="titulo">Data de Admissão:</span>
+                <span>{{colaborador.dadosEmpresa.data_admissao}}</span>
+            </li>
+
+            <li>
+                <span class="titulo">Situação:</span>
+                <span>{{colaborador.dadosEmpresa.situacao}}</span>
+            </li>
+        </ul>
+        
+        <button type="button" class="btn btn-default" style="font-size: 15px; padding: 5px;" (click)="FecharModal()">Fechar</button>
+      </div>
+
+  </ng-template>

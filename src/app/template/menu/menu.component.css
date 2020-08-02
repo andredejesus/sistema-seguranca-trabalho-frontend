@@ -1,0 +1,180 @@
+*{
+    margin: 0;
+    padding: 0;
+    text-decoration: none; 
+ }
+
+
+.menu{
+    padding-bottom: 15px;
+
+}
+
+.menu .item i{
+    margin-left: 15px;
+    margin-right: 10px;
+}
+
+.menu .item{
+    line-height: 2.5;
+}
+
+.menu .item label{
+    cursor: pointer;
+}
+
+.menu .item .sub-menu{
+    background-color: #16a085;
+    max-height: 0;
+    transition: all 0.8s;
+    overflow: hidden;
+    line-height: 2;
+}
+
+.menu .item input:checked ~ .sub-menu{
+    max-height: 5em;
+    transition: all 0.8s;
+}
+
+.menu .item .sub-menu a{
+    display: block;
+    color: #fff;
+    margin-left: 20px;
+}
+
+.menu .item input{
+    display: none;
+}
+
+
+
+
+ @media only screen and (max-width: 575px) {
+
+    .menu .fa-times{
+        margin-top: -999%; 
+        margin-left: -999%; 
+        font-size: 20px; 
+        background-color: #fff; 
+        padding: 8px;
+        transition: all 2s;
+        position: absolute;
+
+    }
+
+    .menu .fa-times.show{
+        margin-top: 10px; 
+        margin-left: 105%;
+        transition: all 1s;
+        position: absolute;
+        opacity: 100%;
+    }
+
+ }
+
+ @media only screen and (min-width: 576px) {
+
+    .menu .fa-times{
+        margin-top: -999%; 
+        margin-left: -999%; 
+        font-size: 20px; 
+        background-color: #fff; 
+        padding: 8px;
+        transition: all 2s;
+        position: absolute;
+
+    }
+
+    .menu .fa-times.show{
+        margin-top: 10px; 
+        margin-left: 105%;
+        transition: all 1s;
+        position: absolute;
+        opacity: 100%;
+    }
+
+ }
+
+ @media only screen and (min-width: 769px) {
+     
+ }
+
+ /*.menu .item-dashboard{
+    border-bottom: 1px solid #c3c3c3;
+ }
+
+ .menu{
+     height: 100vh;
+ }
+
+ .sub-menu{
+     background-color: #16a085;
+     overflow: hidden;
+     transition: 0.8s;
+     max-height: 0;
+ }
+
+ .sub-menu.show{
+     transition: 0.8s;
+     max-height: 10em;
+ }
+
+ .sub-menu a{
+     display: block;
+     color: #fff;
+     margin-left: 30px;
+     line-height: 2;
+ }
+
+
+.btn{
+    display: block;
+    padding: 10px 0;
+    color: #000;
+    position: relative;
+    text-align: left;
+}
+
+.btn i{
+    margin-right: 10px;
+}
+
+
+@media (min-width: 0px) and (max-width: 575px)
+{
+    .menu{
+        width: 100%;
+        display: block;
+        
+
+    }
+}
+
+@media (min-width: 576px) and (max-width: 767px){
+
+    .menu{
+        width: 100%;
+        display: block;
+        min-height: 300px;
+        height: auto;
+    }
+
+    .sub-menu.show{
+        transition: 0.8s;
+        max-height: 10em;
+        max-width: 87%;
+    }
+
+    .sub-menu{
+        background-color: #16a085;
+        overflow: hidden;
+        transition: 0.8s;
+        max-height: 0;
+        max-width: 87%;
+    }
+
+}
+
+@media (min-width: 991px){
+    
+}*/

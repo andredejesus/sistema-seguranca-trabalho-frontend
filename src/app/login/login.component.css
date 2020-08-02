@@ -1,0 +1,22 @@
+.container{
+    max-width: 500px;
+    padding: 30px;
+}
+
+.container .card .card-header{
+    text-align: center;
+    font-weight: bolder;
+    font-size: 1.5em;
+    color: #fff;
+    background-color: #16a085;
+}
+
+.container .card{
+    margin-top: 120px;
+    box-shadow: 0px 0px 3px #C3C3C3;
+}
+
+.container .card-body button{
+    background-color:#16a085 ;
+    color: #fff;
+}

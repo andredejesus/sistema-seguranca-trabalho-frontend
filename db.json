@@ -1,0 +1,65 @@
+{
+    "colaboradores": [
+        {
+            "id": 1,
+            "nome": "Rafaela de Jesus",
+            "data_nascimento": "1995-08-08",
+            "rg": "00000000",
+            "cpf": "56356733411",
+            "dadosEmpresa": {
+                "id": 1,
+                "funcao": "Auxilar de Escritório",
+                "lotacao": "Central Park",
+                "departamento": "Satélite Construção",
+                "data_admissao": "2017-09-20",
+                "situacao": "Demitido"
+            }
+        },
+        {
+            "id": 2,
+            "nome": "André de Jesus Araújo",
+            "data_nascimento": "1995-04-22",
+            "rg": "3125894",
+            "cpf": "04923450150",
+            "dadosEmpresa": {
+                "id": 2,
+                "funcao": "Auxilar de Escritório",
+                "lotacao": "ADM I",
+                "departamento": "Satélite Construção",
+                "data_admissao": "2020-07-24",
+                "situacao": "Ativo"
+            }
+        },
+        {
+            "id": 4,
+            "nome": "Rafaela de Jesus",
+            "data_nascimento": "1995-08-08",
+            "rg": "00000000",
+            "cpf": "13530427586",
+            "dadosEmpresa": {
+                "id": 4,
+                "funcao": "Funcao teste 3",
+                "lotacao": "lotacao teste 3",
+                "departamento": "Departamento teste 3",
+                "data_admissao": "2017-09-20",
+                "situacao": "situacao teste 3"
+            }
+        },
+        {
+            "id": 5,
+            "nome": "Marcos Antonio de Araujo",
+            "data_nascimento": "1995-08-08",
+            "rg": "00000000",
+            "cpf": "96527289774",
+            "dadosEmpresa": {
+                "id": 5,
+                "funcao": "Funcao teste 3",
+                "lotacao": "lotacao teste 3",
+                "departamento": "Departamento teste 3",
+                "data_admissao": "2017-09-20",
+                "situacao": "situacao teste 3"
+            }
+        }
+    ]
+    
+}
