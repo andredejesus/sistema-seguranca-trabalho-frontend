@@ -3,10 +3,10 @@ const app = express();
 
 const PORT = process.env.PORT || 8080;
 
-app.use(express.static(__dirname + '/dist/sast'));
+app.use(express.static(__dirname + '/dist/sastec'));
 
 app.get('/*', (req, res) => {
-    res.sendFile(__dirname + '/dist/sast/index.html');
+    res.sendFile(__dirname + '/dist/sastec/index.html');
 });
 
 app.listen(PORT, ()=>{
