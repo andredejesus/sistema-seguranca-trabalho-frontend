@@ -67,7 +67,7 @@
         margin-left: 105%;
         transition: all 1s;
         position: absolute;
-        opacity: 100%;
+        opacity: 99%;
     }
 
  }
@@ -90,7 +90,7 @@
         margin-left: 105%;
         transition: all 1s;
         position: absolute;
-        opacity: 100%;
+        opacity: 99%;
     }
 
  }
@@ -98,83 +98,3 @@
  @media only screen and (min-width: 769px) {
      
  }
-
- /*.menu .item-dashboard{
-    border-bottom: 1px solid #c3c3c3;
- }
-
- .menu{
-     height: 100vh;
- }
-
- .sub-menu{
-     background-color: #16a085;
-     overflow: hidden;
-     transition: 0.8s;
-     max-height: 0;
- }
-
- .sub-menu.show{
-     transition: 0.8s;
-     max-height: 10em;
- }
-
- .sub-menu a{
-     display: block;
-     color: #fff;
-     margin-left: 30px;
-     line-height: 2;
- }
-
-
-.btn{
-    display: block;
-    padding: 10px 0;
-    color: #000;
-    position: relative;
-    text-align: left;
-}
-
-.btn i{
-    margin-right: 10px;
-}
-
-
-@media (min-width: 0px) and (max-width: 575px)
-{
-    .menu{
-        width: 100%;
-        display: block;
-        
-
-    }
-}
-
-@media (min-width: 576px) and (max-width: 767px){
-
-    .menu{
-        width: 100%;
-        display: block;
-        min-height: 300px;
-        height: auto;
-    }
-
-    .sub-menu.show{
-        transition: 0.8s;
-        max-height: 10em;
-        max-width: 87%;
-    }
-
-    .sub-menu{
-        background-color: #16a085;
-        overflow: hidden;
-        transition: 0.8s;
-        max-height: 0;
-        max-width: 87%;
-    }
-
-}
-
-@media (min-width: 991px){
-    
-}*/
