@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { take } from 'rxjs/Operators';
 
 import { JwtHelperService } from "@auth0/angular-jwt";
 import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -54,7 +54,7 @@ export class AuthService {
       return false;
     }
 
-  tentarLogar(username: string, password: string){
+  tentarLogar(username: string, password: string) : Observable<any>{
 
     const params = new HttpParams()
                   .set('username', username)
@@ -66,6 +66,6 @@ export class AuthService {
       'Content-Type': 'application/x-www-form-urlencoded'
     }
 
-    return this.http.post(this.tokenUrl, params.toString(), { headers } ).pipe(take(1))
+    return this.http.post<any>(this.tokenUrl, params.toString(), { headers } );
   }
 }

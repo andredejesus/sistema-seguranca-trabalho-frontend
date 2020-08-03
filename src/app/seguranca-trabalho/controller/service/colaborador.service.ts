@@ -3,8 +3,6 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Colaborador } from '../models/colaborador';
 import { environment } from './../../../../environments/environment';
 import { Observable } from 'rxjs';
-import { take } from 'rxjs/Operators';
-import { stringify } from 'querystring';
 
 @Injectable({
   providedIn: 'root'
@@ -35,8 +33,8 @@ export class ColaboradorService {
     return this.http.put<Colaborador>(`${environment.API}/${this.apiURL}`, colaborador);
   }
 
-  deletarColaborador(id: number) {
-    return this.http.delete<Colaborador>(`${environment.API}/${this.apiURL}/${id}`).pipe(take(1));
+  deletarColaborador(id: number): Observable<Colaborador> {
+    return this.http.delete<Colaborador>(`${environment.API}/${this.apiURL}/${id}`);
   }
 
   filtroColaboradores(nome: string, rg: string, cpf: string, data_nascimento: string, data_admissao: string, funcao:string, departamento:string, lotacao:string, situacao:string): Observable<any> {
