@@ -12,7 +12,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { LoginComponent } from './login/login.component';
 import { LayoutComponent } from './template/layout/layout.component';
 import { TokenInterceptor } from './controller/token.interceptor';
-
+import { AlertaErroComponent } from './controller/alertas/alerta-erro/alerta-erro.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +20,9 @@ import { TokenInterceptor } from './controller/token.interceptor';
     MenuComponent,
     DashboardComponent,
     LoginComponent,
-    LayoutComponent
+    LayoutComponent,
+    AlertaErroComponent,
+
   ],
   imports: [
 
@@ -32,7 +34,11 @@ BrowserModule,
 
     SegurancaTrabalhoModule
   ],
+  exports:[
+
+  ],
   providers: [
+
     {
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptor,

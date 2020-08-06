@@ -5,6 +5,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { JwtHelperService } from "@auth0/angular-jwt";
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
+import * as moment from 'moment';
 
 @Injectable({
   providedIn: 'root'
@@ -15,6 +16,7 @@ export class AuthService {
   clientId: string = `${environment.clientId}`;
   clientSecret: string = `${environment.clientSecret}`;
 
+
   jwtHelper: JwtHelperService = new JwtHelperService();
   
 
@@ -22,8 +24,10 @@ export class AuthService {
 
     obterToken(){
       const tokenString = localStorage.getItem('access_token');
+
       if(tokenString){
         const token = JSON.parse(tokenString).access_token
+        //const currentDate = new Date().getTime(); 
         return token;
       }
       return null;
@@ -38,6 +42,7 @@ export class AuthService {
       const token = this.obterToken();
       if(token){
         const usuario = this.jwtHelper.decodeToken(token).user_name
+
         return usuario;
       }
       return null;
@@ -49,9 +54,29 @@ export class AuthService {
       if(token){
         const expired = this.jwtHelper.isTokenExpired(token)
         return true;
+        
+      }
+      return false;
+    }
+
+    verificarAutenticacao2(): boolean{
+      const token = this.obterToken();
+
+      const usuario = this.jwtHelper.decodeToken(token).exp
+      const expired = this.jwtHelper.isTokenExpired(token)
+
+      if(token){
+        const expired = this.jwtHelper.isTokenExpired(token)
+        return true;
+      }
+
+      if(usuario == 0 && token){
+        this.encerrarSessao();
+        return false;
       }
 
       return false;
+      
     }
 
   tentarLogar(username: string, password: string) : Observable<any>{

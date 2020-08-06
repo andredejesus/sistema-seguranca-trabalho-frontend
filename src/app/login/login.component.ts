@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../controller/service/auth.service';
+import { AlertaErroComponent } from '../controller/alertas/alerta-erro/alerta-erro.component';
 
 @Component({
   selector: 'app-login',
@@ -11,7 +12,11 @@ export class LoginComponent implements OnInit {
 
   username: string;
   password: string;
-  loginErro: boolean;
+
+  erros: String[];
+  erro: string;
+
+  @ViewChild(AlertaErroComponent, {static: false}) msgErro: AlertaErroComponent;
 
   constructor(private authService: AuthService, private route: Router) { }
 
@@ -24,11 +29,15 @@ export class LoginComponent implements OnInit {
         
         const access_token = JSON.stringify(res);
         localStorage.setItem('access_token', access_token);
-
         this.route.navigate(['dashboard']);
-    }, error =>{
-      
-        console.log('Ocorreu um erro ao gerar o token de acesso.');
+
+    }, 
+    
+    erroResponse => {
+        //this.msgErro.setMsgErro('Usuário não encontrado!');
+        this.erro = erroResponse.error.error_description;
+        //this.msgErro.setMsgErro(this.erros);
+        console.log('Erros: ', this.erros);
     });
   }
 

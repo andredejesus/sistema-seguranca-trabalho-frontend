@@ -15,6 +15,7 @@ export class AuthGuard implements CanActivate {
     state: RouterStateSnapshot): boolean {
 
       const autenticacao = this.authService.verificarAutenticacao();
+      console.log('Autenticação: ', autenticacao);
 
       if(autenticacao){
           return true;

@@ -1,6 +1,5 @@
-
-<app-msg-sucesso></app-msg-sucesso>
-<app-msg-erro></app-msg-erro>
+<app-alerta-sucesso></app-alerta-sucesso>
+<app-alerta-erro></app-alerta-erro>
 
 <div class="header">
     <h5>Cadastrar</h5>
@@ -17,8 +16,12 @@
             <div class="row">
                 <input type="hidden" class="form-control" [(ngModel)]="colaborador.id" name="id" id="id">
                 <div class="col-md-12">
-                    <label for="colaborador">Nome </label>
-                    <input type="text" class="form-control" [(ngModel)]="colaborador.nome" name="colaborador" id="colaborador" placeholder="Nome do colaborador">
+                    <label for="colaborador">Nome*</label>
+                    <input type="text" class="form-control" #nome="ngModel" [(ngModel)]="colaborador.nome" name="colaborador" id="colaborador" placeholder="Nome do colaborador" required>
+                    <div *ngIf="nome.invalid && nome.touched">
+                        <p>Campo obrigatório</p>
+                    </div>
+
                 </div>
 
                 <div class="col-md-4">
@@ -27,42 +30,61 @@
                 </div>
                 
                 <div class="col-md-4">
-                    <label for="cpf">CPF</label>
-                    <input type="text" [(ngModel)]="colaborador.cpf" name="cpf" class="form-control" id="cpf" placeholder="CPF">
+                    <label for="cpf">CPF*</label>
+                    <input type="text" [(ngModel)]="colaborador.cpf" #cpf="ngModel" name="cpf" class="form-control" id="cpf" placeholder="CPF" required>
+                    <div *ngIf="cpf.invalid && cpf.touched">
+                        <p>Campo obrigatório</p>
+                    </div>
+
                 </div>
 
                 <div class="col-md-4">
-                    <label for="nascimento">Data Nascimento</label>
-                    <input type="date" [(ngModel)]="colaborador.data_nascimento" name="nascimento" class="form-control" id="nascimento">
+                    <label for="nascimento">Data Nascimento*</label>
+                    <input type="date" [(ngModel)]="colaborador.data_nascimento" #nascimento="ngModel" name="nascimento" class="form-control" id="nascimento" required>
+                    <div *ngIf="nascimento.invalid && nascimento.touched">
+                        <p>Campo obrigatório</p>
+                    </div>
+
                 </div>
 
                 <div class="col-md-4">
-                    <label for="data_admissao">Data Admissão</label>
-                    <input type="date" [(ngModel)]="colaborador.dadosEmpresa.data_admissao" name="data_admissao" class="form-control" id="data_admissao">
+                    <label for="data_admissao">Data Admissão*</label>
+                    <input type="date" [(ngModel)]="colaborador.dadosEmpresa.data_admissao" #admissao="ngModel" name="data_admissao" class="form-control" id="data_admissao" required>
+                    <div *ngIf="admissao.invalid && admissao.touched">
+                        <p>Campo obrigatório</p>
+                    </div>
                 </div>
 
                 <div class="col-md-4">
-                    <label for="funcao">Função</label>
-                    <select class="form-control" id="funcao" [(ngModel)]="colaborador.dadosEmpresa.funcao" name="funcao">
-                        <option selected>Selecione..</option>
+                    <label for="funcao">Função*</label>
+                    <select class="form-control" id="funcao" #funcao="ngModel" required [(ngModel)]="colaborador.dadosEmpresa.funcao" name="funcao">
+                        <option [ngValue]="undefined" selected>Selecione..</option>
                         <option>Auxilar de Escritório</option>
                         <option>Assist. Administrativo II</option>
                         <option>Chefe de Setor</option>
                       </select>
+
+                    <div *ngIf="funcao.invalid && funcao.touched">
+                        <p>Campo obrigatório</p>
+                    </div>
+                
                 </div>
 
                 <div class="col-md-4">
-                    <label for="departamento">Departamento</label>
-                    <select class="form-control" id="departamento" [(ngModel)]="colaborador.dadosEmpresa.departamento" name="departamento">
-                        <option selected>Selecione..</option>
+                    <label for="departamento">Departamento*</label>
+                    <select class="form-control" id="departamento" #departamento="ngModel" [(ngModel)]="colaborador.dadosEmpresa.departamento" name="departamento" required>
+                        <option [ngValue]="undefined" selected>Selecione..</option>
                         <option>Satélite Construção</option>
                       </select>
+                      <div *ngIf="departamento.invalid && departamento.touched">
+                        <p>Campo obrigatório</p>
+                      </div>
                 </div>
 
                 <div class="col-md-6">
-                    <label for="lotacao">Lotação</label>
-                    <select class="form-control" id="lotacao" [(ngModel)]="colaborador.dadosEmpresa.lotacao" name="lotacao">
-                        <option selected>Selecione..</option>
+                    <label for="lotacao">Lotação*</label>
+                    <select class="form-control" id="lotacao" #lotacao="ngModel" required [(ngModel)]="colaborador.dadosEmpresa.lotacao" name="lotacao">
+                        <option [ngValue]="undefined" selected>Selecione..</option>
                         <option>ADM I</option>
                         <option>ADM II</option>
                         <option>Porto Seguro</option>
@@ -70,20 +92,26 @@
                         <option>Tercerizado</option>
                         <option>TGS</option>
                       </select>
+                      <div *ngIf="lotacao.invalid && lotacao.touched">
+                        <p>Campo obrigatório</p>
+                      </div>
                 </div>
 
                 <div class="col-md-6">
-                    <label for="situacao">Situação</label>
-                    <select class="form-control" id="situacao" [(ngModel)]="colaborador.dadosEmpresa.situacao" name="situacao">
-                        <option selected>Selecione..</option>
+                    <label for="situacao">Situação*</label>
+                    <select class="form-control" id="situacao" #situacao="ngModel" required [(ngModel)]="colaborador.dadosEmpresa.situacao" name="situacao">
+                        <option [ngValue]="undefined" selected>Selecione..</option>
                         <option>Ativo</option>
                         <option>Demitido</option>
                         <option>INSS</option>
                       </select>
+                      <div *ngIf="situacao.invalid && situacao.touched">
+                        <p>Campo obrigatório</p>
+                      </div>
                 </div>
             </div>
 
-            <button type="submit" class="btn btn-default mt-1">Salvar</button>
+            <button type="submit" class="btn btn-default mt-1" [disabled]="form.invalid" >Salvar</button>
 
         </form>
       

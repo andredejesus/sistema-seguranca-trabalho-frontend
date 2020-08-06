@@ -1,21 +1,22 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-msg-sucesso',
-  templateUrl: './msg-sucesso.component.html',
-  styleUrls: ['./msg-sucesso.component.css']
+  selector: 'app-alerta-sucesso',
+  templateUrl: './alerta-sucesso.component.html',
+  styleUrls: ['./alerta-sucesso.component.css']
 })
-export class MsgSucessoComponent implements OnInit {
+export class AlertaSucessoComponent implements OnInit {
 
   msgSucesso: string;
 
   constructor() { }
 
-  ngOnInit() {
+  ngOnInit(): void {
   }
 
   setMsgSucesso(msgSucesso: string, tempo: number = 5000){
     this.msgSucesso = msgSucesso;
+    console.log('Mensagem: ' + msgSucesso);
     setTimeout(() => {this.msgSucesso = null }, tempo);
   }
 

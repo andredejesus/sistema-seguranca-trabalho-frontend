@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ModalModule } from 'ngx-bootstrap/modal';
 
@@ -8,18 +8,16 @@ import { AsoComponent } from './paginas/aso/aso.component';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { ColaboradorListComponent } from './paginas/colaborador/colaborador-list/colaborador-list.component';
-import { MsgSucessoComponent } from './alertas/msg-sucesso/msg-sucesso.component';
-import { MsgErroComponent } from './alertas/msg-erro/msg-erro.component';
-import { HTTP_INTERCEPTORS } from '@angular/common/http';
-import { TokenInterceptor } from '../controller/token.interceptor';
+import { AlertaSucessoComponent } from './controller/alertas/alerta-sucesso/alerta-sucesso.component';
+import { AlertaErroComponent } from './controller/alertas/alerta-erro/alerta-erro.component';
+
 
 @NgModule({
   declarations: [
     ColaboradorFormComponent,
     AsoComponent, 
-    ColaboradorListComponent, 
-    MsgSucessoComponent, 
-    MsgErroComponent],
+    ColaboradorListComponent, AlertaSucessoComponent, AlertaErroComponent, 
+  ],
   imports: [
     CommonModule,
     SegurancaTrabalhoRoutingModule,

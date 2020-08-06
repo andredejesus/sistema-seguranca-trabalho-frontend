@@ -1,5 +1,5 @@
-<app-msg-sucesso></app-msg-sucesso>
-<app-msg-erro></app-msg-erro>
+<app-alerta-sucesso></app-alerta-sucesso>
+<app-alerta-erro></app-alerta-erro>
 
 <header>
     <h6>Colaboradores</h6>
@@ -18,7 +18,7 @@
             <div class="form-row" style="display: flex; flex-wrap: wrap;">
                 <div class="form-group col">
                     <label for="nome">Nome</label>
-                    <input type="text" class="form-control" name="nome" [(ngModel)]="colaborador.nome" id="nome" placeholder="Nome do colaborador">
+                    <input type="text" class="form-control" name="nome" [(ngModel)]="colaborador.nome" id="nome" placeholder="Colaborador">
                 </div>
                 <div class="form-group col-sm-3">
                     <label for="rg">RG</label>
@@ -26,7 +26,7 @@
                 </div>
                 <div class="form-group col-sm-3">
                     <label for="cpf">CPF</label>
-                    <input type="text" class="form-control" name="cpf" [(ngModel)]="colaborador.cpf" id="cpf" >
+                    <input type="text" class="form-control" name="cpf" [(ngModel)]="colaborador.cpf" id="cpf" placeholder="CPF">
                 </div>
                 <div class="form-group col">
                     <label for="nascimento">D. Nascimento</label>
@@ -42,7 +42,7 @@
                 <div class="form-group col">
                     <label for="funcao">Função</label>
                     <select class="form-control" id="funcao" name="funcao" [(ngModel)]="colaborador.dadosEmpresa.funcao">
-                        <option selected>Selecione..</option>
+                        <option [ngValue]="undefined" selected>Selecione..</option>
                         <option>Auxilar de Escritório</option>
                         <option>Assist. Administrativo II</option>
                         <option>Chefe de Setor</option>
@@ -51,14 +51,14 @@
                 <div class="form-group col-sm-3">
                     <label for="departamento">Departamento</label>
                     <select class="form-control" id="departamento" name="departamento" [(ngModel)]="colaborador.dadosEmpresa.departamento">
-                        <option selected>Selecione..</option>
+                        <option [ngValue]="undefined" selected>Selecione..</option>
                         <option>Satélite Construção</option>
                       </select>
                 </div>
                 <div class="form-group col-sm">
                     <label for="lotacao">Lotação</label>
                     <select class="form-control" id="lotacao" name="lotacao" [(ngModel)]="colaborador.dadosEmpresa.lotacao">
-                        <option selected>Selecione..</option>
+                        <option [ngValue]="undefined" selected>Selecione..</option>
                         <option>ADM I</option>
                         <option>ADM II</option>
                         <option>Porto Seguro</option>
@@ -71,7 +71,7 @@
                 <div class="form-group col-sm-2">
                     <label for="situacao">Situação</label>
                     <select class="form-control" id="situacao" name="situacao" [(ngModel)]="colaborador.dadosEmpresa.situacao">
-                        <option selected>Selecione..</option>
+                        <option [ngValue]="undefined" selected>Selecione..</option>
                         <option>Ativo</option>
                         <option>Demitido</option>
                         <option>INSS</option>
@@ -80,9 +80,9 @@
             </div>
 
             <button type="submit" class="btn btn-default">Pesquisar</button>
- 
+
         </form>
-      
+
     </div>
 
 </div>
@@ -91,7 +91,7 @@
 
 <div class="card">
     <div class="card-body" style="display: flex; justify-content: space-between; padding: 10px 10px;">
-        
+
         <table class="table table-hover">
             <thead>
                 <tr>
@@ -113,15 +113,15 @@
 
                         <a role="button" class="btn btn-warning btn-notebook" (click)="buscarColaborador(colaborador)"><i class="fa fa-pencil" aria-hidden="true"></i></a>
                         <a role="button" class="btn btn-danger btn-notebook" (click)="abrirModal(colaborador.id)"><i class="fa fa-trash" aria-hidden="true"></i></a>
-                        
+
                     </td>
                 </tr>
-            </tbody> 
+            </tbody>
         </table>
 
-        
+
     </div>
-</div>  
+</div>
 
 <ng-template #modalDeletar>
 
@@ -146,7 +146,7 @@
       <div class="modal-body modalDetalhes" >
 
         <h6>Dados Pessoais</h6>
-       
+
         <ul>
             <li>
                 <span class="titulo">Nome:</span>
@@ -197,7 +197,7 @@
                 <span>{{colaboradorDetalhes.dadosEmpresa.situacao}}</span>
             </li>
         </ul>
-        
+
         <button type="button" class="btn btn-default" style="font-size: 15px; padding: 5px;" (click)="FecharModal()">Fechar</button>
       </div>
 

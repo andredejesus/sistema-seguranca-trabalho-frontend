@@ -2,18 +2,21 @@ import { Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
 import { ColaboradorService } from 'src/app/seguranca-trabalho/controller/service/colaborador.service';
 import { Colaborador, DadosEmpresa } from 'src/app/seguranca-trabalho/controller/models/colaborador';
 import { Router } from '@angular/router';
-import { MsgErroComponent } from 'src/app/seguranca-trabalho/alertas/msg-erro/msg-erro.component';
-import { MsgSucessoComponent } from 'src/app/seguranca-trabalho/alertas/msg-sucesso/msg-sucesso.component';
+
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { Subscription } from 'rxjs';
+import { AlertaSucessoComponent } from 'src/app/seguranca-trabalho/controller/alertas/alerta-sucesso/alerta-sucesso.component';
+import { AlertaErroComponent } from 'src/app/seguranca-trabalho/controller/alertas/alerta-erro/alerta-erro.component';
+
 
 @Component({
   selector: 'app-colaborador-list',
   templateUrl: './colaborador-list.component.html',
-  styleUrls: ['./colaborador-list.component.css']
+  styleUrls: ['./colaborador-list.component.css'],
+  
 })
 export class ColaboradorListComponent implements OnInit, OnDestroy {
-  colaboradoresTeste;
+
   colaboradores: Colaborador [] = [];
   colaborador: Colaborador = new Colaborador();
   colaboradorDetalhes: Colaborador = new Colaborador();
@@ -22,8 +25,8 @@ export class ColaboradorListComponent implements OnInit, OnDestroy {
 
   inscricao: Subscription;
 
-  @ViewChild(MsgSucessoComponent, {static: false}) msgSucesso: MsgSucessoComponent;
-  @ViewChild(MsgErroComponent, {static: false}) msgErro: MsgErroComponent;
+  @ViewChild(AlertaSucessoComponent, {static: false}) msgSucesso: AlertaSucessoComponent;
+  @ViewChild(AlertaErroComponent, {static: false}) msgErro: AlertaErroComponent;
 
   @ViewChild('modalDeletar', {static: false}) templateModalDeletar;
 
@@ -38,31 +41,13 @@ export class ColaboradorListComponent implements OnInit, OnDestroy {
 
       this.colaborador.dadosEmpresa = new DadosEmpresa();
       this.colaboradorDetalhes.dadosEmpresa = new DadosEmpresa();
-
-
-    /*this.colaboradoresTeste = [
-      {
-        id: 1,
-        nome: "André de Jesus Araújo",
-        data_nascimento: "1995-04-22",
-        rg: "3125894",
-        cpf: "04923450150",
-        dadosEmpresa: {
-          id: 1,
-          funcao: "Chefe de Setor",
-          lotacao: "Porto Seguro",
-          departamento: "Satélite Construção",
-          data_admissao: "2020-07-02",
-          situacao: "Ativo"
-        }
-      }]*/
-
   }
 
   
 
   buscarColaborador(colaborador){
     this.router.navigateByUrl('colaboradores/' + colaborador.id);
+    
   }
 
   abrirModal(id) {
@@ -77,9 +62,10 @@ export class ColaboradorListComponent implements OnInit, OnDestroy {
           this.msgSucesso.setMsgSucesso('Colaborador deletado com sucesso!');
       },
       error =>{
-        this.msgErro.setErro('Ocorreu algum problema ao tentar deletr o colaborador.');
+        this.msgErro.setMsgErro('Ocorreu algum problema ao tentar deletr o colaborador.');
       }
     );
+
     this.metodosModalRef.hide();
   }
  

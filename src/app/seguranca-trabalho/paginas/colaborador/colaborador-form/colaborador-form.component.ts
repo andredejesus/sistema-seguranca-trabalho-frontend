@@ -1,10 +1,10 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ColaboradorService } from './../../../controller/service/colaborador.service';
 import { Colaborador, DadosEmpresa } from 'src/app/seguranca-trabalho/controller/models/colaborador';
-import { MsgSucessoComponent } from 'src/app/seguranca-trabalho/alertas/msg-sucesso/msg-sucesso.component';
-import { MsgErroComponent } from 'src/app/seguranca-trabalho/alertas/msg-erro/msg-erro.component';
 import { Route } from '@angular/compiler/src/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { AlertaSucessoComponent } from 'src/app/seguranca-trabalho/controller/alertas/alerta-sucesso/alerta-sucesso.component';
+import { AlertaErroComponent } from 'src/app/seguranca-trabalho/controller/alertas/alerta-erro/alerta-erro.component';
 
 
 
@@ -17,8 +17,9 @@ export class ColaboradorFormComponent implements OnInit {
 
   colaborador: Colaborador = new Colaborador();
 
-  @ViewChild(MsgSucessoComponent, {static: false}) msgSucesso: MsgSucessoComponent;
-  @ViewChild(MsgErroComponent, {static: false}) msgErro: MsgErroComponent
+  @ViewChild(AlertaSucessoComponent, {static: false}) msgSucesso: AlertaSucessoComponent;
+  @ViewChild(AlertaErroComponent, {static: false}) msgErro: AlertaErroComponent;
+
 
   constructor(private colaboradorService: ColaboradorService,
               private route: ActivatedRoute,
@@ -41,20 +42,20 @@ export class ColaboradorFormComponent implements OnInit {
       if(this.colaborador.id == null){
           this.colaboradorService.salvarColaborador(this.colaborador).subscribe(
             res =>{
-                this.msgSucesso.setMsgSucesso('Colaborador cadastrado com sucesso!');
+               this.msgSucesso.setMsgSucesso('Colaborador cadastrado com sucesso!');
             },
             error => {
-                this.msgErro.setErro('Ocorreu algum erro inesperado...');
+               this.msgErro.setMsgErro('Ocorreu algum erro inesperado...');
             }
           );
       }else{
         this.colaboradorService.editarColaborador(this.colaborador).subscribe(
             res => {
-                this.msgSucesso.setMsgSucesso('Colaborador editado com sucesso!');
+               this.msgSucesso.setMsgSucesso('Colaborador editado com sucesso!');
                 this.router.navigateByUrl('colaborador-list');
             },
             error => {
-                this.msgErro.setErro('Ocorreu um erro ao editar o colaborador. Verifique se todos os dados foram preenchidos.');
+               this.msgErro.setMsgErro('Ocorreu um erro ao editar o colaborador. Verifique se todos os dados foram preenchidos.');
             }
         );
       }
