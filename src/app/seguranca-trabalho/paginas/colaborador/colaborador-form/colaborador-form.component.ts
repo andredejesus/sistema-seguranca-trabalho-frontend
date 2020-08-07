@@ -20,7 +20,7 @@ export class ColaboradorFormComponent implements OnInit {
   @ViewChild(AlertaSucessoComponent, {static: false}) msgSucesso: AlertaSucessoComponent;
   @ViewChild(AlertaErroComponent, {static: false}) msgErro: AlertaErroComponent;
 
-
+  msgErros:string [];
   constructor(private colaboradorService: ColaboradorService,
               private route: ActivatedRoute,
               private router: Router) { 
@@ -33,8 +33,7 @@ export class ColaboradorFormComponent implements OnInit {
     if(this.colaborador.id != null ){
         this.buscarColaboradorPorId();
       }
-
-      
+     
   }
 
   salvarColaborador(){
@@ -43,9 +42,17 @@ export class ColaboradorFormComponent implements OnInit {
           this.colaboradorService.salvarColaborador(this.colaborador).subscribe(
             res =>{
                this.msgSucesso.setMsgSucesso('Colaborador cadastrado com sucesso!');
+               this.colaborador = new Colaborador();
+               this.colaborador.dadosEmpresa = new DadosEmpresa();
             },
-            error => {
-               this.msgErro.setMsgErro('Ocorreu algum erro inesperado...');
+            errorResponse => {
+              if(errorResponse.error.errors == null)
+              {
+                this.msgErro.setMsgErro('Ocorreu algum erro inesperado...');
+              }else{
+                this.msgErros = errorResponse.error.errors;
+              } 
+               
             }
           );
       }else{
@@ -54,8 +61,13 @@ export class ColaboradorFormComponent implements OnInit {
                this.msgSucesso.setMsgSucesso('Colaborador editado com sucesso!');
                 this.router.navigateByUrl('colaborador-list');
             },
-            error => {
-               this.msgErro.setMsgErro('Ocorreu um erro ao editar o colaborador. Verifique se todos os dados foram preenchidos.');
+            errorResponse => {
+              if(errorResponse.error.errors == null)
+              {
+                this.msgErro.setMsgErro('Ocorreu algum erro inesperado...');
+              }else{
+                this.msgErros = errorResponse.error.errors;
+              } 
             }
         );
       }

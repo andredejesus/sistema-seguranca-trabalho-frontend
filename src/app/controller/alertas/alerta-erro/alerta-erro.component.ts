@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AlertaErroComponent implements OnInit {
 
-  msgErro:string [];
+  msgErro: string;
 
 
 
@@ -16,7 +16,7 @@ export class AlertaErroComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  setMsgErro(msgErro: string [], tempo: number = 5000){
+  setMsgErro(msgErro: string, tempo: number = 5000){
     this.msgErro = msgErro;
     setTimeout(() => {this.msgErro = null }, tempo);
   }

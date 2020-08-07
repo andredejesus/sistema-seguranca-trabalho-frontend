@@ -1,6 +1,10 @@
 <app-alerta-sucesso></app-alerta-sucesso>
 <app-alerta-erro></app-alerta-erro>
 
+<div class="alert alert-danger" role="alert" *ngFor="let msgErro of msgErros">
+    {{msgErro}}
+</div>
+
 <div class="header">
     <h5>Cadastrar</h5>
     <a role="button" style="display:none;" routerLink="/colaborador-list" class="btn btn-default">Consultar Colaborador</a>
@@ -12,7 +16,7 @@
     </div>-->
     <div class="card-body">
 
-        <form #form="ngForm" (ngSubmit)="salvarColaborador(); form.reset()">
+        <form #form="ngForm" (ngSubmit)="salvarColaborador()">
             <div class="row">
                 <input type="hidden" class="form-control" [(ngModel)]="colaborador.id" name="id" id="id">
                 <div class="col-md-12">
