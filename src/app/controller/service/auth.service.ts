@@ -53,30 +53,9 @@ export class AuthService {
 
       if(token){
         const expired = this.jwtHelper.isTokenExpired(token)
-        return true;
-        
+        return true;   
       }
       return false;
-    }
-
-    verificarAutenticacao2(): boolean{
-      const token = this.obterToken();
-
-      const usuario = this.jwtHelper.decodeToken(token).exp
-      const expired = this.jwtHelper.isTokenExpired(token)
-
-      if(token){
-        const expired = this.jwtHelper.isTokenExpired(token)
-        return true;
-      }
-
-      if(usuario == 0 && token){
-        this.encerrarSessao();
-        return false;
-      }
-
-      return false;
-      
     }
 
   tentarLogar(username: string, password: string) : Observable<any>{
