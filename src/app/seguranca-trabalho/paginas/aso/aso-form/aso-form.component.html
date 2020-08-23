@@ -1,0 +1,186 @@
+<app-alerta-sucesso></app-alerta-sucesso>
+<app-alerta-erro></app-alerta-erro>
+
+<div class="header">
+    <h5>Cadastrar</h5>
+    <a role="button" style="display:none;" routerLink="/colaborador-list" class="btn btn-default">Consultar Colaborador</a>
+</div>
+
+<div class="card">
+    <!--<div class="card-header">
+      Novo
+    </div>-->
+    <div class="card-body">
+
+        <form #form="ngForm" (ngSubmit)="salvarAso(); form.reset()">
+    
+            <div class="row" ngModelGroup="aso">
+
+                <input type="hidden" class="form-control" [(ngModel)]="aso.id" name="id" id="id">
+
+                <div class="col-md-12">
+                    <label for="colaborador">Colaborador*</label>
+                    <select class="form-control" id="colaborador" #colaborador="ngModel" [(ngModel)]="aso.colaborador" required name="colaborador">
+                        <option [ngValue]="undefined" selected>Selecione..</option>
+                        <option *ngFor="let colaborador of colaboradores">
+                            {{colaborador.nome}}
+                        </option>
+                      </select>
+                      <div *ngIf="colaborador.invalid && colaborador.touched">
+                        <p>Campo obrigatório</p>
+                      </div>
+                </div>
+
+                <div class="col-md-3">
+                    <label for="tipo-aso">Tipo Aso*</label>
+                    <select class="form-control" id="tipo-aso" #tipoAso="ngModel" [(ngModel)]="aso.tipo_aso" required name="tipo-aso">
+                        <option [ngValue]="undefined" selected>Selecione..</option>
+                        <option>Admissional</option>
+                        <option>Demissional</option>
+                        <option>Periodico</option>
+                      </select>
+                      <div *ngIf="tipoAso.invalid && tipoAso.touched">
+                        <p>Campo obrigatório</p>
+                      </div>
+                </div>
+
+                <div class="col-md-3">
+                    <label for="data-emissao">Data Emissão*</label>
+                    <input type="date" name="data-emissao" #dataEmissao="ngModel" (blur)="calculaDiasVencimentoAso();" [(ngModel)]="aso.data_emissao" class="form-control" id="data-emissao" required>
+                    <div *ngIf="dataEmissao.invalid && dataEmissao.touched">
+                        <p>Campo obrigatório</p>
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <label for="dias-vencimento">Dias Vencimento*</label>
+                    <input type="number" class="form-control" #diasVencimento="ngModel"  (blur)="calculaDiasVencimentoAso();" required [(ngModel)]="aso.dias_vencimento" name="dias_vencimento" id="dias-vencimento" placeholder="000">
+                    <div *ngIf="diasVencimento.invalid && diasVencimento.touched">
+                        <p>Campo obrigatório</p>
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <label for="data-vencimento">Data Vencimento*</label>
+                <input type="text"  name="data_vencimento" readonly="true" #dataVencimento="ngModel" [(ngModel)]="aso.data_vencimento" class="form-control" id="data-vencimento">
+                </div> 
+
+            </div>
+
+
+            <div class="div-adicionar-exames" >
+                <button type="button" class="btn btn-default" (click)="abrirModal()" >
+                    <i class="fa fa-plus-square fa-2x" aria-hidden="true"></i>
+                    <span>Adicionar Exames</span>
+                </button>
+            </div>
+
+            <table class="table table-hover" style="background-color: #f1f1f1;">
+                <thead>
+                    <tr>
+                        <th>Exame</th>
+                        <th>Data Exame</th>
+                        <th>Data Vencimento</th>
+                        <th>Status</th>
+                        <th>Ação</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let exame of examesTemporarios">
+                        <td>{{exame.exame}}</td>
+                        <td>{{exame.data_exame}}</td>
+                        <td>{{exame.data_vencimento}}</td>
+                        <td>{{exame.status}}</td>
+                        <td>
+                            <a role="button" class="btn btn-danger" (click)="deletarExame(exame)">
+                                <i class="fa fa-trash" aria-hidden="true"></i>
+                            </a>
+                        </td>
+
+                    </tr>
+                </tbody>
+
+                <div *ngIf="examesTemporarios.length == 0" style="margin:10px; ">
+                    <span>Nenhum exame inserido.</span>
+                </div>
+                
+            </table>
+
+            <button type="submit" class="btn btn-default mt-1 btn-salvar" [disabled]="form.invalid" >Salvar</button>
+
+        </form>
+      
+    </div>
+
+  </div>
+
+  <ng-template #Mensagem>
+
+  </ng-template>
+
+  <ng-template #modalExames>
+
+    <div class="modal-header bg-default " style="display: flex; justify-content: center;">
+        <h6 class="modal-title text-light" style="height: 20px;" >Adicionar Exame</h6>
+      </div>
+
+      <div class="modal-body" >
+
+        <form #form="ngForm" (ngSubmit)="incluirExame();">
+            <div ngModelGroup="exames">
+                <div class="form-group">
+                    <label for="exame">Exame*</label>
+                    <select class="form-control" id="exame" #nomeExame="ngModel" required [(ngModel)]="exame.exame" name="exame">
+                        <option [ngValue]="undefined" selected>Selecione..</option>
+                        <option>Exame 1</option>
+                        <option>Exame 2</option>
+                        <option>Exame 3</option>
+                        <option>Exame 4</option>
+                        <option>Exame 5</option>
+                    </select>
+                    <div *ngIf="nomeExame.invalid && nomeExame.touched">
+                        <p>Campo obrigatório</p>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                <label for="data_exame">Data Exame</label>
+                <input type="date" class="form-control" #dataExame="ngModel" required [(ngModel)]="exame.data_exame" name="data_exame" id="data_exame">
+                    <div *ngIf="dataExame.invalid && dataExame.touched">
+                        <p>Campo obrigatório</p>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="data_vencimento">Data Vencimento</label>
+                    <input type="date" class="form-control" #dataVencimentoExame="ngModel" required [(ngModel)]="exame.data_vencimento" name="data_vencimento" id="data_vencimento">
+                    <div *ngIf="dataVencimentoExame.invalid && dataVencimentoExame.touched">
+                        <p>Campo obrigatório</p>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="tipo-aso">Status*</label>
+                    <select class="form-control" id="status" #status="ngModel" required name="status" [(ngModel)]="exame.status">
+                        <option [ngValue]="undefined" selected>Selecione..</option>
+                        <option>Apto</option>
+                        <option>Inapto</option>
+                    </select>
+                    <div *ngIf="status.invalid && status.touched">
+                        <p>Campo obrigatório</p>
+                    </div>
+                </div>
+
+            </div>
+
+            <button type="submit" class="btn btn-default" [disabled]="form.invalid" style="font-size: 15px; background-color: #16a085; color: #FFF; margin-right: 10px;">Incluir</button>
+            <button type="button" class="btn btn-danger" style="font-size: 15px; padding: 5px;" (click)="FecharModal()">Cancelar</button>    
+          
+        </form>
+
+
+    </div>
+
+  </ng-template>
+
+

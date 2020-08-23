@@ -21,7 +21,7 @@
                 <input type="hidden" class="form-control" [(ngModel)]="colaborador.id" name="id" id="id">
                 <div class="col-md-12">
                     <label for="colaborador">Nome*</label>
-                    <input type="text" class="form-control" #nome="ngModel" [(ngModel)]="colaborador.nome" name="colaborador" id="colaborador" placeholder="Nome do colaborador" required>
+                    <input type="text" class="form-control" (keypress)="validaCamposDeTexto($event)" #nome="ngModel" [(ngModel)]="colaborador.nome" name="colaborador" id="colaborador" placeholder="Nome do colaborador" required>
                     <div *ngIf="nome.invalid && nome.touched">
                         <p>Campo obrigatório</p>
                     </div>
@@ -121,4 +121,6 @@
       
     </div>
   </div>
+
+  
 

@@ -5,6 +5,7 @@ import { Route } from '@angular/compiler/src/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AlertaSucessoComponent } from 'src/app/seguranca-trabalho/controller/alertas/alerta-sucesso/alerta-sucesso.component';
 import { AlertaErroComponent } from 'src/app/seguranca-trabalho/controller/alertas/alerta-erro/alerta-erro.component';
+import { AlertService } from 'src/app/controller/service/alert.service';
 
 
 
@@ -23,7 +24,8 @@ export class ColaboradorFormComponent implements OnInit {
   msgErros:string [];
   constructor(private colaboradorService: ColaboradorService,
               private route: ActivatedRoute,
-              private router: Router) { 
+              private router: Router,
+              private alertService: AlertService) { 
                 this.route.params.subscribe(params => this.colaborador.id = params['id']);
               }
 
@@ -41,14 +43,14 @@ export class ColaboradorFormComponent implements OnInit {
       if(this.colaborador.id == null){
           this.colaboradorService.salvarColaborador(this.colaborador).subscribe(
             res =>{
-               this.msgSucesso.setMsgSucesso('Colaborador cadastrado com sucesso!');
+               this.alertService.success('Colaborador cadastrado com sucesso!')
                this.colaborador = new Colaborador();
                this.colaborador.dadosEmpresa = new DadosEmpresa();
             },
             errorResponse => {
               if(errorResponse.error.errors == null)
               {
-                this.msgErro.setMsgErro('Ocorreu algum erro inesperado...');
+                this.alertService.error('Ocorreu algum erro inesperado...', 'Atenção!');
               }else{
                 this.msgErros = errorResponse.error.errors;
               } 
@@ -58,25 +60,34 @@ export class ColaboradorFormComponent implements OnInit {
       }else{
         this.colaboradorService.editarColaborador(this.colaborador).subscribe(
             res => {
-               this.msgSucesso.setMsgSucesso('Colaborador editado com sucesso!');
-                this.router.navigateByUrl('colaborador-list');
+              this.alertService.success('Colaborador editado com sucesso!');
+              this.router.navigateByUrl('colaborador-list');
             },
             errorResponse => {
               if(errorResponse.error.errors == null)
               {
-                this.msgErro.setMsgErro('Ocorreu algum erro inesperado...');
+                this.alertService.error('Ocorreu algum erro inesperado...');
               }else{
                 this.msgErros = errorResponse.error.errors;
               } 
             }
         );
       }
-
       
   }
 
   buscarColaboradorPorId(){
       this.colaboradorService.buscarColaborador(this.colaborador.id).subscribe(res => this.colaborador = res);
   }
+
+  validaCamposDeTexto(evt){
+    var tecla = evt.keyCode;
+
+    if(tecla > 47 && tecla < 58){ 
+      alert('Precione apenas teclas não numéricas');
+      evt.preventDefault(); 
+    }
+
+}
 
 }

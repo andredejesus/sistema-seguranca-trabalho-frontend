@@ -16,7 +16,6 @@ export class AlertaSucessoComponent implements OnInit {
 
   setMsgSucesso(msgSucesso: string, tempo: number = 5000){
     this.msgSucesso = msgSucesso;
-    console.log('Mensagem: ' + msgSucesso);
     setTimeout(() => {this.msgSucesso = null }, tempo);
   }
 

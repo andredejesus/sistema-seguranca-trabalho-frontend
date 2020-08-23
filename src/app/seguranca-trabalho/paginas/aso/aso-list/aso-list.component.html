@@ -1,0 +1,157 @@
+<app-alerta-sucesso></app-alerta-sucesso>
+<app-alerta-erro></app-alerta-erro>
+
+<header>
+    <h6>Aso</h6>
+    <button type="button" class="btn btn-default" style="display:none;" routerLink="/aso-form">Cadastrar</button>
+</header>
+
+<div class="card card-filtro">
+
+    <div class="card-header">
+        <i class="fa fa-filter" aria-hidden="true"></i> Filtro
+    </div>
+    <div class="card-body">
+
+        <form #form="ngForm" (ngSubmit)="filtroAso()" class="form-filtro">
+
+            <div class="form-row" style="display: flex; flex-wrap: wrap;">
+                <div class="form-group col">
+                    <label for="colaborador">Colaborador*</label>
+                    <select class="form-control" id="colaborador" required name="colaborador">
+                        <option [ngValue]="undefined" selected>Selecione..</option>
+                        <option>
+             
+                        </option>
+                      </select>
+                </div>
+                <div class="form-group col-sm-3">
+                    <label for="tipo_aso">Tipo Aso</label>
+                    <select class="form-control" id="tipo_aso" name="tipo_aso">
+                        <option [ngValue]="undefined" selected>Selecione..</option>
+                        <option>Admissional</option>
+                        <option>Demissional</option>
+                        <option>Periódico</option>
+                      </select>
+                </div>
+                <div class="form-group col-sm-3">
+                    <label for="data_emissao">Data Emissão</label>
+                    <input type="date" class="form-control" name="data_emissao" id="data_emissao">
+                </div>
+                <div class="form-group col-sm-3">
+                    <label for="data_vencimento">Data Vencimento</label>
+                    <input type="date" class="form-control" name="data_vencimento" id="data_vencimento">
+                </div>
+
+            </div>
+
+            <button type="submit" class="btn btn-default">Pesquisar</button>
+
+        </form>
+
+    </div>
+
+</div>
+
+<h6>Resultado</h6>
+
+<div class="card">
+    <div class="card-body" style="display: flex; justify-content: space-between; padding: 10px 10px;">
+
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Colaborador</th>
+                    <th>Aso</th>
+                    <th>Dt Emissão</th>
+                    <th>Dt Vencimento</th>
+                    <th>Status</th>
+                    <th>Ação</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let aso of listaDeAso">
+
+                    <td>{{aso.colaborador}}</td>
+                    <td>{{aso.tipo_aso}}</td>
+                    <td>{{aso.data_emissao | date: "dd/MM/yyyy"}}</td>
+                    <td>{{aso.data_vencimento | date: "dd/MM/yyyy"}}</td>
+                    <td [ngSwitch]="aso.situacao">
+                        <span *ngSwitchCase="'Válido'">
+                            <i class="fa fa-check-circle text-success mr-1" aria-hidden="true"></i> {{aso.situacao}}
+                        </span>
+                        <span *ngSwitchCase="'À Vencer'">
+                            <i class="fa fa-exclamation-triangle text-warning mr-1" aria-hidden="true"></i> {{aso.situacao}}
+                        </span>
+                        <span *ngSwitchCase="'Vencido'">
+                            <i class="fa fa-times-circle text-danger mr-1" aria-hidden="true"></i> {{aso.situacao}}
+                        </span>
+                    </td>
+                    <td>
+                        <a role="button" class="btn btn-default" (click)="abrirModalExames(aso.id)" style="background-color:#16a085;">
+                            <i class="fa fa-search" aria-hidden="true"></i>
+                        </a>
+
+                        <a role="button" class="btn btn-warning btn-notebook"><i class="fa fa-pencil" (click)="redirecionaFormAso(aso)" aria-hidden="true"></i></a>
+                        <a role="button" class="btn btn-danger btn-notebook"><i class="fa fa-trash" aria-hidden="true"></i></a>
+
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+
+    </div>
+</div>
+
+<ng-template #modalDeletar>
+
+    <div class="modal-header bg-danger " style="display: flex; justify-content: center;">
+        <h6 class="modal-title text-light" style="height: 20px;">Confirmação</h6>
+      </div>
+
+      <div class="modal-body text-center" >
+        <p>Tem certeza que deseja deletar esse colaborador?</p>
+        <button type="button" class="btn btn-default" style="font-size: 15px;">Sim</button>
+        <button type="button" class="btn btn-primary" style="font-size: 15px; padding: 5px;">Não</button>
+      </div>
+
+  </ng-template>
+
+  <ng-template #modalExames>
+
+    <div class="modal-header" style="display: flex; justify-content: center; background-color: #16a085;">
+        <h6 class="modal-title text-light" style="height: 20px;">Dados Detalhados</h6>
+      </div>
+
+      <div class="modal-body modalDetalhes">
+
+        <div *ngFor="let exame of examesPorAso">
+
+            <h6>{{exame.exame}}</h6>
+
+            <ul>
+
+                <li>
+                    <span class="titulo">Data Exame:</span>
+                    <span>{{exame.data_exame}}</span>
+                </li>
+
+                <li>
+                    <span class="titulo">Data Vencimento:</span>
+                    <span>{{exame.data_vencimento}}</span>
+                </li>
+
+                <li>
+                    <span class="titulo">Status:</span>
+                    <span>{{exame.status}}</span>
+                </li>
+            </ul>
+
+        </div>
+
+        <button type="button" class="btn btn-danger" (click)="fecharModal();" style="font-size: 15px; padding: 5px;">Fechar</button>
+      </div>
+
+  </ng-template>
+

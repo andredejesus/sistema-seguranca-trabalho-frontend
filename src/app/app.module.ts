@@ -14,6 +14,7 @@ import { LayoutComponent } from './template/layout/layout.component';
 import { TokenInterceptor } from './controller/token.interceptor';
 import { AlertaErroComponent } from './controller/alertas/alerta-erro/alerta-erro.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -22,16 +23,12 @@ import { AlertaErroComponent } from './controller/alertas/alerta-erro/alerta-err
     LoginComponent,
     LayoutComponent,
     AlertaErroComponent,
-
   ],
   imports: [
-
-
 BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-
     SegurancaTrabalhoModule
   ],
   exports:[
@@ -42,7 +39,7 @@ BrowserModule,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptor,
-      multi: true
+      multi: true,
     }
   ],
   bootstrap: [AppComponent]

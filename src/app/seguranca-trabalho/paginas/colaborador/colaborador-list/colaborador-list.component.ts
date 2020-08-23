@@ -7,6 +7,7 @@ import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { Subscription } from 'rxjs';
 import { AlertaSucessoComponent } from 'src/app/seguranca-trabalho/controller/alertas/alerta-sucesso/alerta-sucesso.component';
 import { AlertaErroComponent } from 'src/app/seguranca-trabalho/controller/alertas/alerta-erro/alerta-erro.component';
+import { AlertService } from 'src/app/controller/service/alert.service';
 
 
 @Component({
@@ -34,7 +35,8 @@ export class ColaboradorListComponent implements OnInit, OnDestroy {
 
   constructor(private colaboradorService: ColaboradorService,
               private router: Router,
-              private modalService: BsModalService) { }
+              private modalService: BsModalService,
+              private alertService: AlertService) { }
 
   ngOnInit() {
       this.listaColaboradores();
@@ -59,10 +61,12 @@ export class ColaboradorListComponent implements OnInit, OnDestroy {
     this.inscricao = this.colaboradorService.deletarColaborador(this.colaborador.id).subscribe(
       res => {
           this.listaColaboradores();
-          this.msgSucesso.setMsgSucesso('Colaborador deletado com sucesso!');
+          this.alertService.success('Colaborador deletado com sucesso!');
+          //this.msgSucesso.setMsgSucesso('Colaborador deletado com sucesso!');
       },
       error =>{
-        this.msgErro.setMsgErro('Ocorreu algum problema ao tentar deletr o colaborador.');
+        this.alertService.error('Ocorreu algum problema ao tentar deletar o colaborador.', 'Atenção!');
+        //this.msgErro.setMsgErro('Ocorreu algum problema ao tentar deletar o colaborador.');
       }
     );
 

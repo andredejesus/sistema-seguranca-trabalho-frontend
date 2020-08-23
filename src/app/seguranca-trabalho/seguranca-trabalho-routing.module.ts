@@ -4,13 +4,18 @@ import { ColaboradorFormComponent } from './paginas/colaborador/colaborador-form
 import { ColaboradorListComponent } from './paginas/colaborador/colaborador-list/colaborador-list.component';
 import { LayoutComponent } from '../template/layout/layout.component';
 import { AuthGuard } from "../controller/auth.guard";
+import { AsoFormComponent } from './paginas/aso/aso-form/aso-form.component';
+import { AsoListComponent } from './paginas/aso/aso-list/aso-list.component';
 
 
 const routes: Routes = [
   {path: '', component: LayoutComponent, canActivate : [AuthGuard], children:[
     {path: 'colaborador-form', component: ColaboradorFormComponent},
     {path: 'colaborador-list', component: ColaboradorListComponent},
-    {path: 'colaboradores/:id', component: ColaboradorFormComponent}
+    {path: 'colaboradores/:id', component: ColaboradorFormComponent},
+    {path: 'aso-form', component: AsoFormComponent},
+    {path: 'aso-list', component: AsoListComponent},
+    {path: 'aso/:id', component: AsoFormComponent}
   ]}
   
 ];

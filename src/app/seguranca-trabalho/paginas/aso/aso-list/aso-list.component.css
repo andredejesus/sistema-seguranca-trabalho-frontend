@@ -59,11 +59,6 @@ header .btn{
     display: block;
 }
 
-.modalDetalhes .btn{
-    background-color: #16a085;
-    color: #fff;
-}
-
 .modalDetalhes ul li .titulo{
     margin-right: 10px;
     font-weight: 500;
