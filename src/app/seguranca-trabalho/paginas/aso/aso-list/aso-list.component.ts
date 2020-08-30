@@ -17,6 +17,7 @@ export class AsoListComponent implements OnInit {
 
   listaDeAso: Aso [] = [];
   examesPorAso: Exame [] = [];
+  exame: Exame = new Exame();
   aso: Aso = new Aso();
 
   status:boolean
@@ -35,18 +36,19 @@ export class AsoListComponent implements OnInit {
   ngOnInit(): void {
 
     this.buscaAsos();
-    this.verificaStatus();
+    this.verificaStatusAso();
+    
   }
 
   buscaAsos(){
     this.inscricao = this.asoService.listaAso().subscribe(res => {
       this.listaDeAso = res
-      this.verificaStatus();
+      this.verificaStatusAso();
     });
   }
 
   //Faz os calculos de datas para verificar o status de cada aso
-  verificaStatus(){
+  verificaStatusAso(){
 
       this.listaDeAso.forEach(itemLista => {
         const dataAtual = moment().format("YYYY-MM-DD");
@@ -75,13 +77,47 @@ export class AsoListComponent implements OnInit {
       });
   }
 
+  //Faz os calculos de datas para verificar o status de cada exame
+  verificaStatusExame(){
+
+    this.examesPorAso.forEach(itemLista => {
+      const dataAtual = moment().format("YYYY-MM-DD");
+      
+      //Verificar se a data atual está entre a data de emissão e a data de vencimento do aso
+      const dataEstaValida = moment(dataAtual).isBetween(itemLista.data_exame, itemLista.data_vencimento);
+     
+      //Retiro uma quantidade de dias da data de vencimento do aso
+      const periodoAvencer = moment(itemLista.data_vencimento).subtract(30, 'days');
+      
+      //Verifico se a data atual está entre o perído 'A Vencer' e a data de vencimento do aso
+      const dataEstaPeriodoVencimento = moment(dataAtual).isBetween(periodoAvencer, this.exame.data_vencimento);
+    
+      if(dataEstaValida === true){
+      itemLista.situacao = 'Válido';
+     }
+
+     if(dataEstaPeriodoVencimento === true){
+      itemLista.situacao = 'À Vencer';
+     }
+     
+     if(dataEstaValida === false){
+      itemLista.situacao = 'Vencido'
+     }
+      
+    });
+}
+
   filtroAso(){
 
   }
 
   abrirModalExames(id_aso:number){
+    
     this.metodosModalRef = this.modalService.show(this.templateModalExames, {class: 'modal-sm-6'});
-    this.asoService.buscaExamesPorAso(id_aso).subscribe(res => this.examesPorAso = res);
+    this.asoService.buscaExamesPorAso(id_aso).subscribe(res =>{
+      this.examesPorAso = res
+      this.verificaStatusExame();
+    } )
   }
 
   abrirModalDeletar(id:number){

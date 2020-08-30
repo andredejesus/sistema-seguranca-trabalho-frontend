@@ -65,7 +65,7 @@
                     <th>Aso</th>
                     <th>Dt Emissão</th>
                     <th>Dt Vencimento</th>
-                    <th>Status</th>
+                    <th>Situação</th>
                     <th>Ação</th>
                 </tr>
             </thead>
@@ -151,6 +151,18 @@
                 <li>
                     <span class="titulo">Status:</span>
                     <span>{{exame.status}}</span>
+                </li>
+
+                <li [ngSwitch]="exame.situacao"> 
+                    <span class="titulo" *ngSwitchCase="'Válido'">Situação: 
+                        <i class="fa fa-check-circle text-success mr-1" aria-hidden="true"></i> {{exame.situacao}}
+                    </span>
+                    <span class="titulo" *ngSwitchCase="'À Vencer'">Situação: 
+                        <i class="fa fa-exclamation-triangle text-warning mr-1" aria-hidden="true"></i> {{exame.situacao}}
+                    </span>
+                    <span class="titulo" *ngSwitchCase="'Vencido'">Situação: 
+                        <i class="fa fa-times-circle text-danger mr-1" aria-hidden="true"></i> {{exame.situacao}}
+                    </span>
                 </li>
             </ul>
 

@@ -26,4 +26,5 @@ export class Exame {
     dias_vencimento: string;
     status:string;
     id_aso: number;
+    situacao:string;
 }
