@@ -5,8 +5,8 @@ import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { Subscription } from 'rxjs';
 import { Exame } from './../../../controller/models/aso';
 import * as moment from 'moment';
-import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-aso-list',
@@ -26,6 +26,7 @@ export class AsoListComponent implements OnInit {
   inscricao: Subscription;
 
   @ViewChild('modalExames', {static:false}) templateModalExames;
+  @ViewChild('modalDeletar', {static:false}) templateModalDeletar;
 
   constructor(private asoService: AsoService,
               private modalService: BsModalService,
@@ -33,11 +34,15 @@ export class AsoListComponent implements OnInit {
 
   ngOnInit(): void {
 
+    this.buscaAsos();
+    this.verificaStatus();
+  }
+
+  buscaAsos(){
     this.inscricao = this.asoService.listaAso().subscribe(res => {
       this.listaDeAso = res
       this.verificaStatus();
     });
-    this.verificaStatus();
   }
 
   //Faz os calculos de datas para verificar o status de cada aso
@@ -79,12 +84,55 @@ export class AsoListComponent implements OnInit {
     this.asoService.buscaExamesPorAso(id_aso).subscribe(res => this.examesPorAso = res);
   }
 
+  abrirModalDeletar(id:number){
+    this.metodosModalRef = this.modalService.show(this.templateModalDeletar, {class: 'modal-sm-6'});
+  }
+
   fecharModal(): void {
     this.metodosModalRef.hide();
   }
 
   redirecionaFormAso(aso){
     this.router.navigateByUrl('aso/' + aso.id);
+  }
+
+  deletaAso(id: number){
+    Swal.fire({
+      title: 'Você tem certeza?',
+      text: "Ao deletar não terá mais volta.",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Sim',
+      cancelButtonText: 'Cancelar'
+    }).then((result) => {
+
+      if (result.value) {
+        Swal.fire(
+          'Deletedo com sucesso!',
+          '',
+          'success'
+        )
+
+        this.asoService.deletaAso(id).subscribe(
+          res =>{
+
+            this.asoService.buscaExamesPorAso(id).subscribe(res => this.examesPorAso = res);
+
+            console.log('Exames: ', this.examesPorAso);
+
+            if(this.examesPorAso.length > 0){
+              this.examesPorAso.forEach(itemLista =>{
+                this.asoService.deletaExames(itemLista.id).subscribe();
+              });
+            }
+            
+            this.buscaAsos();
+          });
+      }
+      
+    })
   }
 
 

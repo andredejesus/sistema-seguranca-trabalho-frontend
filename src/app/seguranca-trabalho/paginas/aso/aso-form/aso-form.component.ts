@@ -24,6 +24,7 @@ export class AsoFormComponent implements OnInit {
   metodosModalRef: BsModalRef;
 
   examesTemporarios: Exame[] = [];
+  examesAdeletar: Exame[] = [];
   exame: Exame = new Exame();
   colaboradores: Colaborador [] = [];
 
@@ -40,6 +41,8 @@ export class AsoFormComponent implements OnInit {
 
   ngOnInit(): void {
     this.exame = new Exame();
+
+    //alert('Dados: ' + this.aso.id)
 
     this.colaboradorService.listaColaboradores().subscribe(res => this.colaboradores = res);
     
@@ -58,9 +61,18 @@ export class AsoFormComponent implements OnInit {
     
   }
 
+  calculaDiasVencimentoExame(){
+    if(this.exame.data_exame != null && this.exame.dias_vencimento != null){
+      const dataCadastroExame = moment(this.exame.data_exame);
+      dataCadastroExame.add(this.exame.dias_vencimento, 'days');
+      this.exame.data_vencimento = dataCadastroExame.format('YYYY-MM-DD');
+    }
+    
+  }
+
   salvarAso(){
 
-    if(this.aso.id === null){
+    if(this.aso.id == undefined){
 
       this.asoService.salvarAso(this.aso).subscribe(
 
@@ -79,8 +91,16 @@ export class AsoFormComponent implements OnInit {
     }else{
       this.asoService.alteraAso(this.aso).subscribe(
         res =>{
-            this.alteraExame(res.id);
-            this.examesTemporarios = [];
+
+            if(this.examesAdeletar.length > 0){
+
+              this.examesAdeletar.forEach(itemLista =>{
+                  const exameDeletado = itemLista;
+                  this.asoService.deletaExames(exameDeletado.id).subscribe();
+              })
+
+            }
+          this.salvarExame(res.id);
             this.router.navigateByUrl('aso-list');
             this.alertService.success('Aso editado com sucesso!');
         },
@@ -99,26 +119,7 @@ export class AsoFormComponent implements OnInit {
       itemLista.id_aso = id;
 
       this.asoService.salvarExame(itemLista).subscribe(
-        res =>{
-          console.log('Exames cadastrados com sucesso! ', res);
-        },
-        erroResponse => {
-          console.log('Erro ao  cadastrar exames: ', erroResponse);
-        });
-
-  })
-
-  }
-
-  alteraExame(id:number){
-
-    this.examesTemporarios.forEach(itemLista => {
-      itemLista.id_aso = id;
-
-      this.asoService.salvarExame(itemLista).subscribe(
-        res =>{
-          console.log('Exames alterados com sucesso! ', res);
-        },
+        res =>{},
         erroResponse => {
           console.log('Erro ao  cadastrar exames: ', erroResponse);
         });
@@ -140,6 +141,9 @@ export class AsoFormComponent implements OnInit {
   deletarExame(exame){
 
     const index = this.examesTemporarios.indexOf(exame);
+    
+    this.examesAdeletar.push(exame);
+
       if(index > -1){
         this.examesTemporarios.splice(index, 1);
       }

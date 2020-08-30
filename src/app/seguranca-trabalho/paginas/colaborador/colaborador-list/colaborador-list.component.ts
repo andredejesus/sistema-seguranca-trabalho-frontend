@@ -8,6 +8,7 @@ import { Subscription } from 'rxjs';
 import { AlertaSucessoComponent } from 'src/app/seguranca-trabalho/controller/alertas/alerta-sucesso/alerta-sucesso.component';
 import { AlertaErroComponent } from 'src/app/seguranca-trabalho/controller/alertas/alerta-erro/alerta-erro.component';
 import { AlertService } from 'src/app/controller/service/alert.service';
+import Swal from 'sweetalert2';
 
 
 @Component({
@@ -28,8 +29,6 @@ export class ColaboradorListComponent implements OnInit, OnDestroy {
 
   @ViewChild(AlertaSucessoComponent, {static: false}) msgSucesso: AlertaSucessoComponent;
   @ViewChild(AlertaErroComponent, {static: false}) msgErro: AlertaErroComponent;
-
-  @ViewChild('modalDeletar', {static: false}) templateModalDeletar;
 
   @ViewChild('modalDadosDetalhados', {static: false}) templateModalDetalhe;
 
@@ -52,21 +51,14 @@ export class ColaboradorListComponent implements OnInit, OnDestroy {
     
   }
 
-  abrirModal(id) {
-    this.colaborador.id = id;
-    this.metodosModalRef = this.modalService.show(this.templateModalDeletar, {class: 'modal-sm-6'});
-  }
-
   confirmarDelecao(): void {
     this.inscricao = this.colaboradorService.deletarColaborador(this.colaborador.id).subscribe(
       res => {
           this.listaColaboradores();
           this.alertService.success('Colaborador deletado com sucesso!');
-          //this.msgSucesso.setMsgSucesso('Colaborador deletado com sucesso!');
       },
       error =>{
         this.alertService.error('Ocorreu algum problema ao tentar deletar o colaborador.', 'Atenção!');
-        //this.msgErro.setMsgErro('Ocorreu algum problema ao tentar deletar o colaborador.');
       }
     );
 
@@ -99,6 +91,36 @@ export class ColaboradorListComponent implements OnInit, OnDestroy {
                                                   this.colaborador.dadosEmpresa.situacao).subscribe(
        res => this.colaboradores = res
       );
+  }
+
+  deletaColaborador(id: number){
+    Swal.fire({
+      title: 'Você tem certeza?',
+      text: "Ao deletar não terá mais volta.",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Sim',
+    }).then((result) => {
+
+      if (result.value) {
+        Swal.fire(
+          'Deletedo com sucesso!',
+          '',
+          'success'
+        )
+
+        this.colaboradorService.deletarColaborador(id).subscribe(
+          res =>{
+            this.listaColaboradores();
+          }
+        );
+        
+      }
+      
+    })
+
   }
 
   ngOnDestroy(): void {

@@ -92,14 +92,20 @@
                             <i class="fa fa-search" aria-hidden="true"></i>
                         </a>
 
-                        <a role="button" class="btn btn-warning btn-notebook"><i class="fa fa-pencil" (click)="redirecionaFormAso(aso)" aria-hidden="true"></i></a>
-                        <a role="button" class="btn btn-danger btn-notebook"><i class="fa fa-trash" aria-hidden="true"></i></a>
+                        <a role="button" class="btn btn-warning btn-notebook" (click)="redirecionaFormAso(aso)"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+                        <a role="button" class="btn btn-danger btn-notebook" (click)="deletaAso(aso.id)"><i class="fa fa-trash" aria-hidden="true"></i></a>
 
                     </td>
                 </tr>
             </tbody>
+
+            <div *ngIf="listaDeAso.length == 0" style="margin-top:15px; margin-bottom: 5px; ">
+                <span>Nenhum resultado encontrado.</span>
+            </div>
+
         </table>
 
+        
 
     </div>
 </div>
@@ -111,7 +117,7 @@
       </div>
 
       <div class="modal-body text-center" >
-        <p>Tem certeza que deseja deletar esse colaborador?</p>
+        <p>Tem certeza que deseja deletar esse aso?</p>
         <button type="button" class="btn btn-default" style="font-size: 15px;">Sim</button>
         <button type="button" class="btn btn-primary" style="font-size: 15px; padding: 5px;">Não</button>
       </div>
@@ -134,12 +140,12 @@
 
                 <li>
                     <span class="titulo">Data Exame:</span>
-                    <span>{{exame.data_exame}}</span>
+                    <span>{{exame.data_exame | date: 'dd/MM/yyyy'}}</span>
                 </li>
 
                 <li>
                     <span class="titulo">Data Vencimento:</span>
-                    <span>{{exame.data_vencimento}}</span>
+                    <span>{{exame.data_vencimento | date: 'dd/MM/yyyy'}}</span>
                 </li>
 
                 <li>
@@ -148,6 +154,10 @@
                 </li>
             </ul>
 
+        </div>
+
+        <div *ngIf="examesPorAso.length == 0" style="margin-bottom:20px; ">
+            <span style="font-weight: 600;">Nenhum exame cadastrado para esse aso.</span>
         </div>
 
         <button type="button" class="btn btn-danger" (click)="fecharModal();" style="font-size: 15px; padding: 5px;">Fechar</button>

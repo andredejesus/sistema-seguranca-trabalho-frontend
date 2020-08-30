@@ -23,6 +23,7 @@ export class Exame {
     exame: string;
     data_exame: string;
     data_vencimento: string;
+    dias_vencimento: string;
     status:string;
     id_aso: number;
 }

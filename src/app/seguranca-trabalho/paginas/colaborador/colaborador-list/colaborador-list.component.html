@@ -112,30 +112,21 @@
                         </a>
 
                         <a role="button" class="btn btn-warning btn-notebook" (click)="buscarColaborador(colaborador)"><i class="fa fa-pencil" aria-hidden="true"></i></a>
-                        <a role="button" class="btn btn-danger btn-notebook" (click)="abrirModal(colaborador.id)"><i class="fa fa-trash" aria-hidden="true"></i></a>
+                        <a role="button" class="btn btn-danger btn-notebook" (click)="deletaColaborador(colaborador.id)"><i class="fa fa-trash" aria-hidden="true"></i></a>
 
                     </td>
                 </tr>
             </tbody>
+
+            <div *ngIf="colaboradores.length == 0" style="margin-top:15px; margin-bottom: 5px; ">
+                <span>Nenhum resultado encontrado.</span>
+            </div>
+
         </table>
 
 
     </div>
 </div>
-
-<ng-template #modalDeletar>
-
-    <div class="modal-header bg-danger " style="display: flex; justify-content: center;">
-        <h6 class="modal-title text-light" style="height: 20px;" >Confirmação</h6>
-      </div>
-
-      <div class="modal-body text-center" >
-        <p>Tem certeza que deseja deletar esse colaborador?</p>
-        <button type="button" class="btn btn-default" style="font-size: 15px;" (click)="confirmarDelecao()">Sim</button>
-        <button type="button" class="btn btn-primary" style="font-size: 15px; padding: 5px;" (click)="FecharModal()">Não</button>
-      </div>
-
-  </ng-template>
 
   <ng-template #modalDadosDetalhados>
 

@@ -41,4 +41,17 @@ export class AsoService {
     return this.http.put<Exame>(`${environment.API}/${this.apiURL}/exame`, exame);
   }
 
+  deletaExames(id:number): Observable<Exame>{
+      return this.http.delete<Exame>(`${environment.API}/${this.apiURL}/exame/${id}`);
+  }
+
+  deletaExamesPorIdAso(id_aso:number): Observable<Exame>{
+    return this.http.delete<Exame>(`${environment.API}/${this.apiURL}/exame/${id_aso}`);
+  }
+
+  deletaAso(id:number):Observable<Aso>{
+    return this.http.delete<Aso>(`${environment.API}/${this.apiURL}/aso/${id}`);
+  }
+
+
 }

@@ -62,7 +62,7 @@
 
                 <div class="col-md-3">
                     <label for="data-vencimento">Data Vencimento*</label>
-                <input type="text"  name="data_vencimento" readonly="true" #dataVencimento="ngModel" [(ngModel)]="aso.data_vencimento" class="form-control" id="data-vencimento">
+                <input type="date"  name="data_vencimento" readonly="true" #dataVencimento="ngModel" [(ngModel)]="aso.data_vencimento" class="form-control" id="data-vencimento">
                 </div> 
 
             </div>
@@ -88,8 +88,8 @@
                 <tbody>
                     <tr *ngFor="let exame of examesTemporarios">
                         <td>{{exame.exame}}</td>
-                        <td>{{exame.data_exame}}</td>
-                        <td>{{exame.data_vencimento}}</td>
+                        <td>{{exame.data_exame | date: 'dd/MM/yyyy'}}</td>
+                        <td>{{exame.data_vencimento | date: 'dd/MM/yyyy'}}</td>
                         <td>{{exame.status}}</td>
                         <td>
                             <a role="button" class="btn btn-danger" (click)="deletarExame(exame)">
@@ -152,11 +152,16 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="data_vencimento">Data Vencimento</label>
-                    <input type="date" class="form-control" #dataVencimentoExame="ngModel" required [(ngModel)]="exame.data_vencimento" name="data_vencimento" id="data_vencimento">
-                    <div *ngIf="dataVencimentoExame.invalid && dataVencimentoExame.touched">
+                    <label for="dias-vencimento_exame">Dias Vencimento*</label>
+                    <input type="number" class="form-control" #diasVencimentoExame="ngModel"  (blur)="calculaDiasVencimentoExame();" required [(ngModel)]="exame.dias_vencimento" name="dias-vencimento_exame" id="dias-vencimento_exame" placeholder="000">
+                    <div *ngIf="diasVencimentoExame.invalid && diasVencimentoExame.touched">
                         <p>Campo obrigatório</p>
                     </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="data_vencimento_exame">Data Vencimento</label>
+                    <input type="date" class="form-control" readonly="true" [(ngModel)]="exame.data_vencimento" name="data_vencimento_exame" id="data_vencimento_exame">
                 </div>
 
                 <div class="form-group">
