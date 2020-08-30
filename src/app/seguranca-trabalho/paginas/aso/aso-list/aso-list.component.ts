@@ -55,7 +55,7 @@ export class AsoListComponent implements OnInit {
         const dataEstaValida = moment(dataAtual).isBetween(itemLista.data_emissao, itemLista.data_vencimento);
         
         //Retiro uma quantidade de dias da data de vencimento do aso
-        const peridoAvencer = moment(itemLista.data_vencimento).subtract(12, 'days');
+        const peridoAvencer = moment(itemLista.data_vencimento).subtract(30, 'days');
 
         //Verifico se a data atual está entre o perído 'A Vencer' e a data de vencimento do aso
         const dataEstaPeriodoVencimento = moment(dataAtual).isBetween(peridoAvencer, this.aso.data_vencimento);
