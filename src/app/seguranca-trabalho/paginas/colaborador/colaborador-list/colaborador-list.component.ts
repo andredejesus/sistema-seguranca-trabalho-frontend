@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
 import { ColaboradorService } from 'src/app/seguranca-trabalho/controller/service/colaborador.service';
-import { Colaborador, DadosEmpresa } from 'src/app/seguranca-trabalho/controller/models/colaborador';
+import { Colaborador, DadosEmpresa, FiltroColaboradorDTO } from 'src/app/seguranca-trabalho/controller/models/colaborador';
 import { Router } from '@angular/router';
 
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
@@ -22,6 +22,8 @@ export class ColaboradorListComponent implements OnInit, OnDestroy {
   colaboradores: Colaborador [] = [];
   colaborador: Colaborador = new Colaborador();
   colaboradorDetalhes: Colaborador = new Colaborador();
+
+  filtroColaborador: FiltroColaboradorDTO = new FiltroColaboradorDTO();
 
   metodosModalRef: BsModalRef;
 
@@ -80,15 +82,7 @@ export class ColaboradorListComponent implements OnInit, OnDestroy {
   }
 
   filtroColaboradores(){
-      this.colaboradorService.filtroColaboradores(this.colaborador.nome, 
-                                                  this.colaborador.rg,
-                                                  this.colaborador.cpf,
-                                                  this.colaborador.data_nascimento,
-                                                  this.colaborador.dadosEmpresa.data_admissao,
-                                                  this.colaborador.dadosEmpresa.funcao,
-                                                  this.colaborador.dadosEmpresa.departamento,
-                                                  this.colaborador.dadosEmpresa.lotacao,
-                                                  this.colaborador.dadosEmpresa.situacao).subscribe(
+      this.colaboradorService.filtroColaboradores(this.filtroColaborador).subscribe(
        res => this.colaboradores = res
       );
   }

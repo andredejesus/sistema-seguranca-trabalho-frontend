@@ -1,0 +1,87 @@
+<app-alerta-sucesso></app-alerta-sucesso>
+<app-alerta-erro></app-alerta-erro>
+
+<header>
+    <h6>Treinamentos</h6>
+    <button type="button" class="btn btn-default" style="display:none;" routerLink="/treinamento-form">Cadastrar Colaborador</button>
+</header>
+
+<div class="card card-filtro">
+
+    <div class="card-header">
+        <i class="fa fa-filter" aria-hidden="true"></i> Filtro
+    </div>
+    <div class="card-body">
+
+        <form #form="ngForm" class="form-filtro">
+
+            <div class="form-row" style="display: flex; flex-wrap: wrap;">
+                <div class="form-group col">
+                    <label for="colaborador">Colaborador*</label>
+                    <select class="form-control" id="colaborador" required name="colaborador">
+                        <option [ngValue]="undefined" selected>Selecione..</option>
+                        <option *ngFor="let colaborador of colaboradores">
+                            {{colaborador.nome}}
+                        </option>
+                      </select>
+                </div>
+            </div>
+           
+        </form>
+
+    </div>
+
+</div>
+
+<h6>Resultado</h6>
+
+<div class="card">
+    <div class="card-body" style="display: flex; justify-content: space-between; padding: 10px 10px;">
+
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Treinamento</th>
+                    <th class="coluna-table-tablet">Data Treinamento</th>
+                    <th class="coluna-table-notebook">Vencimento</th>
+                    <th class="coluna-table-notebook">Situação</th>
+                    <th>Ação</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let treinamento of treinamentos">
+                    <td>{{treinamento.nm_treinamento}}</td>
+                    <td class="coluna-table-tablet">{{treinamento.data_treinamento | date : 'dd/MM/yyyy'}}</td>
+                    <td class="coluna-table-notebook">{{treinamento.data_vencimento | date : 'dd/MM/yyyy'}}</td>
+                    <td [ngSwitch]="treinamento.situacao">
+                        <span *ngSwitchCase="'Válido'">
+                            <i class="fa fa-check-circle text-success mr-1" aria-hidden="true"></i> {{treinamento.situacao}}
+                        </span>
+                        <span *ngSwitchCase="'À Vencer'">
+                            <i class="fa fa-exclamation-triangle text-warning mr-1" aria-hidden="true"></i> {{treinamento.situacao}}
+                        </span>
+                        <span *ngSwitchCase="'Vencido'">
+                            <i class="fa fa-times-circle text-danger mr-1" aria-hidden="true"></i> {{treinamento.situacao}}
+                        </span>
+                    </td>
+                    <td>
+                        <a role="button" class="btn btn-default" style="background-color:#16a085;">
+                            <i class="fa fa-search" aria-hidden="true"></i>
+                        </a>
+
+                        <a role="button" (click)="buscaTreinamento(treinamento.id)" class="btn btn-warning btn-notebook"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+                        <a role="button" (click)="deletaTreinamento(treinamento.id)" class="btn btn-danger btn-notebook" ><i class="fa fa-trash" aria-hidden="true"></i></a>
+
+                    </td>
+                </tr>
+            </tbody>
+
+            <div *ngIf="treinamentos.length == 0" style="margin-top:15px; margin-bottom: 5px; ">
+                <span>Nenhum resultado encontrado.</span>
+            </div>
+
+        </table>
+
+
+    </div>
+</div>

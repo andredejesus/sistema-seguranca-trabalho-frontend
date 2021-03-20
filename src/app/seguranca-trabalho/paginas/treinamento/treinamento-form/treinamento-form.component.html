@@ -1,0 +1,52 @@
+<div class="header">
+    <h5>Cadastrar</h5>
+    <a role="button" style="display: none;" routerLink="/treinamento-list" class="btn btn-default">Consultar
+        Treinamento</a>
+</div>
+
+<div class="card">
+
+    <div class="card-body">
+
+        <form #form="ngForm" (ngSubmit)="salvarTreinamento()">
+
+            <div class="form-row" style="display: flex; flex-wrap: wrap;">
+
+                <div class="col-md-12">
+                    <label for="colaborador">Colaborador</label>
+                    <select class="form-control" id="colaborador" name="colaborador"  [(ngModel)]="treinamento.id_colaborador">
+                        
+                        <option [ngValue]="undefined" selected >
+                            <span *ngIf="treinamento.id == undefined">Selecione..</span>
+                            <span *ngIf="treinamento.id != undefined">{{colaborador.nome}}</span>
+                        </option>
+                        <option *ngFor="let colaborador of colaboradores" [value]="colaborador.id" >{{colaborador.nome}}</option>
+                    </select>
+                </div>
+
+                <div class="form-group col-md-6">
+                    <label for="nome_treinamento">Treinamento</label>
+                    <input type="text" class="form-control" name="nome_treinamento" [(ngModel)]="treinamento.nm_treinamento" id="nome_treinamento" placeholder="Nome do Treinamento">
+                </div>
+
+                <div class="form-group col-md-2">
+                    <label for="data_treinamento">Data Treinamento</label>
+                    <input type="date" class="form-control" name="data_treinamento" (blur)="calcularVencimentoTreinamento();" [(ngModel)]="treinamento.data_treinamento" id="data_treinamento">
+                </div>
+
+                <div class="form-group col-md-2">
+                    <label for="dias_vencimento">Dias Vencimento</label>
+                    <input type="number" class="form-control" (blur)="calcularVencimentoTreinamento();" [(ngModel)]="treinamento.dias_vencimento" name="dias_vencimento" id="dias_vencimento">
+                </div>
+
+                <div class="form-group col-md-2">
+                    <label for="data_vencimento">Data Vencimento</label>
+                    <input type="date" class="form-control" readonly [(ngModel)]="treinamento.data_vencimento" name="data_vencimento" id="data_vencimento">
+                </div>
+            </div>
+
+            <button type="submit" class="btn btn-default mt-1" [disabled]="form.invalid" >Salvar</button>
+        </form>
+    </div>
+
+</div>

@@ -12,6 +12,8 @@ import { AlertaSucessoComponent } from './controller/alertas/alerta-sucesso/aler
 import { AlertaErroComponent } from './controller/alertas/alerta-erro/alerta-erro.component';
 import { AsoFormComponent } from './paginas/aso/aso-form/aso-form.component';
 import { AsoListComponent } from './paginas/aso/aso-list/aso-list.component';
+import { TreinamentoFormComponent } from './paginas/treinamento/treinamento-form/treinamento-form.component';
+import { TreinamentoListComponent } from './paginas/treinamento/treinamento-list/treinamento-list.component';
 
 
 @NgModule({
@@ -22,6 +24,7 @@ import { AsoListComponent } from './paginas/aso/aso-list/aso-list.component';
     AlertaErroComponent, 
     AsoFormComponent, 
     AsoListComponent, 
+    TreinamentoFormComponent, TreinamentoListComponent
   ],
   imports: [
     CommonModule,
@@ -34,7 +37,9 @@ import { AsoListComponent } from './paginas/aso/aso-list/aso-list.component';
   exports:[
     ColaboradorFormComponent,
     AsoFormComponent, 
-    AsoListComponent
+    AsoListComponent,
+    TreinamentoFormComponent,
+    TreinamentoListComponent
   ],
   providers: [
 

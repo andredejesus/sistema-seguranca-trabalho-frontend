@@ -18,3 +18,16 @@ export class DadosEmpresa {
     data_admissao: string;
     situacao: string;
 }
+
+export class FiltroColaboradorDTO {
+
+    nome: string;
+	rg: string;
+	cpf: string;
+	data_nascimento: string;
+	data_admissao: string;
+	funcao: string;
+	departamento: string;
+	lotacao: string;
+	situacao: string;
+}

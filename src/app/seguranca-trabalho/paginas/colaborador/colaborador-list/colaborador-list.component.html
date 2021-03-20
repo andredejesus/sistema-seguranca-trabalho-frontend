@@ -18,30 +18,31 @@
             <div class="form-row" style="display: flex; flex-wrap: wrap;">
                 <div class="form-group col">
                     <label for="nome">Nome</label>
-                    <input type="text" class="form-control" name="nome" [(ngModel)]="colaborador.nome" id="nome" placeholder="Colaborador">
+                    <input type="text" class="form-control" name="nome" [(ngModel)]="filtroColaborador.nome" id="nome" placeholder="Colaborador">
+                
                 </div>
                 <div class="form-group col-sm-3">
                     <label for="rg">RG</label>
-                    <input type="text" class="form-control" name="rg" [(ngModel)]="colaborador.rg" id="rg" placeholder="RG">
+                    <input type="text" class="form-control" name="rg" [(ngModel)]="filtroColaborador.rg" id="rg" placeholder="RG">
                 </div>
                 <div class="form-group col-sm-3">
                     <label for="cpf">CPF</label>
-                    <input type="text" class="form-control" name="cpf" [(ngModel)]="colaborador.cpf" id="cpf" placeholder="CPF">
+                    <input type="text" class="form-control" name="cpf" [(ngModel)]="filtroColaborador.cpf" id="cpf" placeholder="CPF">
                 </div>
                 <div class="form-group col">
                     <label for="nascimento">D. Nascimento</label>
-                    <input type="date" class="form-control" name="nascimento" [(ngModel)]="colaborador.data_nascimento" id="nascimento">
+                    <input type="date" class="form-control" name="nascimento" [(ngModel)]="filtroColaborador.data_nascimento" id="nascimento">
                 </div>
             </div>
 
             <div class="form-row">
                 <div class="form-group col-sm-2">
                     <label for="data-admissao">D. Admissão</label>
-                    <input type="date" class="form-control" name="data-admissao" [(ngModel)]="colaborador.dadosEmpresa.data_admissao" id="data-admissao">
+                    <input type="date" class="form-control" name="data-admissao" [(ngModel)]="filtroColaborador.data_admissao" id="data-admissao">
                 </div>
                 <div class="form-group col">
                     <label for="funcao">Função</label>
-                    <select class="form-control" id="funcao" name="funcao" [(ngModel)]="colaborador.dadosEmpresa.funcao">
+                    <select class="form-control" id="funcao" name="funcao" [(ngModel)]="filtroColaborador.funcao">
                         <option [ngValue]="undefined" selected>Selecione..</option>
                         <option>Auxilar de Escritório</option>
                         <option>Assist. Administrativo II</option>
@@ -50,14 +51,14 @@
                 </div>
                 <div class="form-group col-sm-3">
                     <label for="departamento">Departamento</label>
-                    <select class="form-control" id="departamento" name="departamento" [(ngModel)]="colaborador.dadosEmpresa.departamento">
+                    <select class="form-control" id="departamento" name="departamento" [(ngModel)]="filtroColaborador.departamento">
                         <option [ngValue]="undefined" selected>Selecione..</option>
                         <option>Satélite Construção</option>
                       </select>
                 </div>
                 <div class="form-group col-sm">
                     <label for="lotacao">Lotação</label>
-                    <select class="form-control" id="lotacao" name="lotacao" [(ngModel)]="colaborador.dadosEmpresa.lotacao">
+                    <select class="form-control" id="lotacao" name="lotacao" [(ngModel)]="filtroColaborador.lotacao">
                         <option [ngValue]="undefined" selected>Selecione..</option>
                         <option>ADM I</option>
                         <option>ADM II</option>
@@ -70,7 +71,7 @@
 
                 <div class="form-group col-sm-2">
                     <label for="situacao">Situação</label>
-                    <select class="form-control" id="situacao" name="situacao" [(ngModel)]="colaborador.dadosEmpresa.situacao">
+                    <select class="form-control" id="situacao" name="situacao" [(ngModel)]="filtroColaborador.situacao">
                         <option [ngValue]="undefined" selected>Selecione..</option>
                         <option>Ativo</option>
                         <option>Demitido</option>
@@ -80,6 +81,8 @@
             </div>
 
             <button type="submit" class="btn btn-default">Pesquisar</button>
+
+            {{filtroColaborador | json}}
 
         </form>
 

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Colaborador } from '../models/colaborador';
+import { Colaborador, FiltroColaboradorDTO } from '../models/colaborador';
 import { environment } from './../../../../environments/environment';
 import { Observable } from 'rxjs';
 
@@ -37,8 +37,8 @@ export class ColaboradorService {
     return this.http.delete<Colaborador>(`${environment.API}/${this.apiURL}/${id}`);
   }
 
-  filtroColaboradores(nome: string, rg: string, cpf: string, data_nascimento: string, data_admissao: string, funcao:string, departamento:string, lotacao:string, situacao:string): Observable<any> {
-    return this.http.get<Colaborador[]>(`${environment.API}/${this.apiURL}/filtro?nome=${nome}&rg=${rg}&cpf=${cpf}&data_nascimento=${data_nascimento}&data_admissao=${data_admissao}&funcao=${funcao}&departamento=${departamento}&lotacao=${lotacao}&situacao=${situacao}`);
+  filtroColaboradores(filtroColaborador: FiltroColaboradorDTO): Observable<any> {
+    return this.http.post<FiltroColaboradorDTO[]>(`${environment.API}/${this.apiURL}/filtro`, filtroColaborador);
   }
 
 }
