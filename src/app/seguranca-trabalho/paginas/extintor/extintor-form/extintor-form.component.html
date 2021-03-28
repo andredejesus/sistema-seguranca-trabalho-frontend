@@ -1,0 +1,79 @@
+<div class="header">
+    <h5>Cadastrar</h5>
+    <a role="button" style="display: none;" routerLink="/extintor-list" class="btn btn-default">Consultar
+        Extintores</a>
+</div>
+
+<div class="card">
+
+    <div class="card-body">
+
+        <form #form="ngForm" (ngSubmit)="salvaExtintor(); form.reset()">
+
+            <div class="form-row" style="display: flex; flex-wrap: wrap;">
+            
+                <div class="col-md-3">
+                    <label for="patrimonio">Nº Patrimônio</label>
+                    <input type="text" class="form-control" name="patrimonio" [(ngModel)]="extintor.nuPatrimonio" id="patrimonio" placeholder="Patrimônio">
+                </div>
+
+                <div class="col-md-3">
+                    <label for="lacre">Lacre</label>
+                    <input type="text" class="form-control" name="lacre" [(ngModel)]="extintor.lacre" id="lacre" placeholder="Lacre">
+                </div>
+
+                <div class="col-md-3">
+                    <label for="inmetro">Nº Inmetro</label>
+                    <input type="text" class="form-control" name="inmetro" [(ngModel)]="extintor.nuInmetro" id="inmetro" placeholder="Nº Inmetro">
+                </div>
+
+                <div class="col-md-3">
+                    <label for="tipo">Tipo</label>
+                    <input type="text" class="form-control" name="tipo" [(ngModel)]="extintor.tipo" id="tipo" placeholder="Tipo">
+                </div>
+
+                <div class="col-md-3">
+                    <label for="ltKg">LT/KG</label>
+                    <input type="text" class="form-control" name="ltKg"  [(ngModel)]="extintor.ltKg" id="ltKg" placeholder="ltKg">
+                </div>
+
+                <div class="col-md-3">
+                    <label for="data-recarga">Data Recarga</label>
+                    <input type="date" class="form-control" name="data-recarga" [(ngModel)]="extintor.data_recarga" id="data-recarga" placeholder="data-recarga">
+                </div>
+
+                <div class="form-group col-md-3">
+                    <label for="dias_vencimento">Dias Vencimento</label>
+                    <input type="number" class="form-control" (blur)="calcularVencimentoExtintor()" name="dias_vencimento" [(ngModel)]="extintor.dias_vencimento" id="dias_vencimento">
+                </div>
+
+                <div class="form-group col-md-3">
+                    <label for="data_vencimento">Data Vencimento</label>
+                    <input type="date" class="form-control" readonly [(ngModel)]="extintor.data_vencimento" name="data_vencimento" id="data_vencimento">
+                </div>
+
+                <div class="col-md-3">
+                    <label for="localizacao">Localização</label>
+                    <select class="form-control" id="localizacao" [(ngModel)]="extintor.localizacao" name="localizacao">
+                        <option [ngValue]="undefined" selected>Selecione..</option>
+                        <option>Escritorio Sede</option>
+                        <option>Porto (Corredor 1)</option>
+                        <option>Porto (Corredor 2)</option>
+                        <option>Porto Betoneira</option>
+                        <option>Central de Carpintaria</option>
+                        <option>Almoxarifado</option>
+                        <option>Refeitorio</option>
+                        <option>Cremalheira</option>
+                      </select>
+                
+                </div>
+
+            </div>
+
+                
+
+            <button type="submit" class="btn btn-default mt-1" >Salvar</button>
+        </form>
+    </div>
+
+</div>

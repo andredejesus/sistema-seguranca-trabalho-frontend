@@ -16,7 +16,7 @@
     </div>-->
     <div class="card-body">
 
-        <form #form="ngForm" (ngSubmit)="salvarColaborador()">
+        <form #form="ngForm" (ngSubmit)="salvarColaborador(); form.reset()">
             <div class="row">
                 <input type="hidden" class="form-control" [(ngModel)]="colaborador.id" name="id" id="id">
                 <div class="col-md-12">

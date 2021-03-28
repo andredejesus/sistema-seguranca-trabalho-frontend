@@ -77,8 +77,12 @@ export class ColaboradorListComponent implements OnInit, OnDestroy {
 
 
   abrirModalDetalhe(id){
-    this.inscricao = this.colaboradorService.buscarColaborador(id).subscribe(res => this.colaboradorDetalhes = res);
+    this.inscricao = this.colaboradorService.buscarColaborador(id).subscribe(res => {
+      this.colaboradorDetalhes = res
+      console.log('DETALHES' + JSON.stringify(this.colaboradorDetalhes.dadosEmpresa));
+    } );
     this.metodosModalRef = this.modalService.show(this.templateModalDetalhe, {class: 'modal-sm-2'})
+
   }
 
   filtroColaboradores(){

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import * as moment from 'moment';
 import { AlertService } from 'src/app/controller/service/alert.service';
+import { UtilService } from 'src/app/controller/service/util.service';
 import { Colaborador } from 'src/app/seguranca-trabalho/controller/models/colaborador';
 import { Treinamento } from 'src/app/seguranca-trabalho/controller/models/treinamento';
 import { ColaboradorService } from 'src/app/seguranca-trabalho/controller/service/colaborador.service';
@@ -23,7 +24,8 @@ export class TreinamentoFormComponent implements OnInit {
               private treinamentoService: TreinamentoService,
               private route: ActivatedRoute,
               private alertService: AlertService,
-              private router: Router) {
+              private router: Router,
+              private utilService: UtilService) {
                 this.route.params.subscribe(params => this.treinamento.id = params['id']);
                }
 
@@ -40,11 +42,7 @@ export class TreinamentoFormComponent implements OnInit {
   }
 
   calcularVencimentoTreinamento(){
-    if(this.treinamento.data_treinamento != null && this.treinamento.dias_vencimento != null){
-        const dataTreinamento = moment(this.treinamento.data_treinamento);
-        dataTreinamento.add(this.treinamento.dias_vencimento, 'days')
-        this.treinamento.data_vencimento = dataTreinamento.format('YYYY-MM-DD');
-    }
+    this.treinamento.data_vencimento = this.utilService.calculaVencimento(this.treinamento.data_treinamento, this.treinamento.dias_vencimento);
   }
 
   salvarTreinamento(){

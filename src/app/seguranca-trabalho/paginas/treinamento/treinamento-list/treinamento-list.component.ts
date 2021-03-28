@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import * as moment from 'moment';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { AlertaErroComponent } from 'src/app/controller/alertas/alerta-erro/alerta-erro.component';
 import { AlertService } from 'src/app/controller/service/alert.service';
 import { AlertaSucessoComponent } from 'src/app/seguranca-trabalho/controller/alertas/alerta-sucesso/alerta-sucesso.component';
@@ -20,16 +21,18 @@ export class TreinamentoListComponent implements OnInit {
 
   treinamentos: Treinamento[];
   colaboradores: Colaborador[];
+  colaboradorDetalhes: Colaborador = new Colaborador();
 
   treinamento = new Treinamento();
+  metodosModalRef: BsModalRef;
 
-  //@ViewChild(AlertaSucessoComponent, {static: false}) msgSucesso: AlertaSucessoComponent;
-  //@ViewChild(AlertaErroComponent, {static: false}) msgErro: AlertaErroComponent;
+  @ViewChild('modalDadosDetalhados', {static: false}) templateModalDetalhe;
 
   constructor(private treinamentoService: TreinamentoService,
               private colaboradorService: ColaboradorService,
               private alertService: AlertService,
-              private router: Router,) { }
+              private router: Router,
+              private modalService: BsModalService,) { }
 
   ngOnInit(): void {
     this.buscaTreinamentos();
@@ -116,6 +119,23 @@ export class TreinamentoListComponent implements OnInit {
        }
         
       });
+  }
+
+  buscaColaboradorPorId(idColaborador){
+
+    this.colaboradorService.buscarColaborador(idColaborador).subscribe(
+      res => {
+          this.colaboradorDetalhes = res;
+
+      }
+    );
+
+    this.metodosModalRef = this.modalService.show(this.templateModalDetalhe, {class: 'modal-sm-2'})
+
+  }
+
+  FecharModal(): void {
+    this.metodosModalRef.hide();
   }
 
 

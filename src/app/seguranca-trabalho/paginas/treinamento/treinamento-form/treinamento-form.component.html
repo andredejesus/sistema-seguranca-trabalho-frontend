@@ -8,7 +8,7 @@
 
     <div class="card-body">
 
-        <form #form="ngForm" (ngSubmit)="salvarTreinamento()">
+        <form #form="ngForm" (ngSubmit)="salvarTreinamento(); form.reset()">
 
             <div class="form-row" style="display: flex; flex-wrap: wrap;">
 

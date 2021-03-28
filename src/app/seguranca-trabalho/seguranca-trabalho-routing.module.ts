@@ -8,10 +8,12 @@ import { AsoFormComponent } from './paginas/aso/aso-form/aso-form.component';
 import { AsoListComponent } from './paginas/aso/aso-list/aso-list.component';
 import { TreinamentoFormComponent } from './paginas/treinamento/treinamento-form/treinamento-form.component';
 import { TreinamentoListComponent } from './paginas/treinamento/treinamento-list/treinamento-list.component';
+import { ExtintorFormComponent } from './paginas/extintor/extintor-form/extintor-form.component';
 
 
 const routes: Routes = [
   {path: '', component: LayoutComponent, canActivate : [AuthGuard], children:[
+    
     {path: 'colaborador-form', component: ColaboradorFormComponent},
     {path: 'colaborador-list', component: ColaboradorListComponent},
     {path: 'colaboradores/:id', component: ColaboradorFormComponent},
@@ -22,7 +24,9 @@ const routes: Routes = [
 
     {path: 'treinamento-form', component: TreinamentoFormComponent},
     {path: 'treinamento-list', component: TreinamentoListComponent},
-    {path: 'treinamento/:id', component: TreinamentoFormComponent}
+    {path: 'treinamento/:id', component: TreinamentoFormComponent},
+
+    {path: 'extintor-form', component: ExtintorFormComponent}
     
   ]}
   

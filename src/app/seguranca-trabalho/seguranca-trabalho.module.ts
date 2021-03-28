@@ -14,6 +14,8 @@ import { AsoFormComponent } from './paginas/aso/aso-form/aso-form.component';
 import { AsoListComponent } from './paginas/aso/aso-list/aso-list.component';
 import { TreinamentoFormComponent } from './paginas/treinamento/treinamento-form/treinamento-form.component';
 import { TreinamentoListComponent } from './paginas/treinamento/treinamento-list/treinamento-list.component';
+import { ExtintorFormComponent } from './paginas/extintor/extintor-form/extintor-form.component';
+
 
 
 @NgModule({
@@ -24,7 +26,9 @@ import { TreinamentoListComponent } from './paginas/treinamento/treinamento-list
     AlertaErroComponent, 
     AsoFormComponent, 
     AsoListComponent, 
-    TreinamentoFormComponent, TreinamentoListComponent
+    TreinamentoFormComponent, 
+    TreinamentoListComponent,
+    ExtintorFormComponent
   ],
   imports: [
     CommonModule,
@@ -39,7 +43,8 @@ import { TreinamentoListComponent } from './paginas/treinamento/treinamento-list
     AsoFormComponent, 
     AsoListComponent,
     TreinamentoFormComponent,
-    TreinamentoListComponent
+    TreinamentoListComponent,
+    ExtintorFormComponent
   ],
   providers: [
 

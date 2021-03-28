@@ -41,6 +41,7 @@
         <table class="table table-hover">
             <thead>
                 <tr>
+                    <th>Colaborador</th>
                     <th>Treinamento</th>
                     <th class="coluna-table-tablet">Data Treinamento</th>
                     <th class="coluna-table-notebook">Vencimento</th>
@@ -50,6 +51,7 @@
             </thead>
             <tbody>
                 <tr *ngFor="let treinamento of treinamentos">
+                    <td>{{treinamento.colaborador.nome}}</td>
                     <td>{{treinamento.nm_treinamento}}</td>
                     <td class="coluna-table-tablet">{{treinamento.data_treinamento | date : 'dd/MM/yyyy'}}</td>
                     <td class="coluna-table-notebook">{{treinamento.data_vencimento | date : 'dd/MM/yyyy'}}</td>
@@ -65,7 +67,7 @@
                         </span>
                     </td>
                     <td>
-                        <a role="button" class="btn btn-default" style="background-color:#16a085;">
+                        <a role="button" (click)="buscaColaboradorPorId(treinamento.colaborador.id)" class="btn btn-default" style="background-color:#16a085;">
                             <i class="fa fa-search" aria-hidden="true"></i>
                         </a>
 
@@ -85,3 +87,69 @@
 
     </div>
 </div>
+
+<ng-template #modalDadosDetalhados>
+
+    <div class="modal-header" style="display: flex; justify-content: center; background-color: #16a085;">
+        <h6 class="modal-title text-light" style="height: 20px;">Dados Detalhados</h6>
+      </div>
+
+      <div class="modal-body modalDetalhes" >
+
+        <h6>Dados Pessoais</h6>
+
+        <ul>
+            <li>
+                <span class="titulo">Nome:</span>
+                <span>{{colaboradorDetalhes.nome}}</span>
+            </li>
+
+            <li>
+                <span class="titulo">Nascimento:</span>
+                <span>{{colaboradorDetalhes.data_nascimento}}</span>
+            </li>
+
+            <li>
+                <span class="titulo">RG:</span>
+                <span>{{colaboradorDetalhes.rg}}</span>
+            </li>
+
+            <li>
+                <span class="titulo">CPF:</span>
+                <span>{{colaboradorDetalhes.cpf}}</span>
+            </li>
+        </ul>
+
+        <h6>Dados Empresariais</h6>
+
+        <ul>
+            <li>
+                <span class="titulo">Função:</span>
+                <span>{{colaboradorDetalhes.dadosEmpresa.funcao}}</span>
+            </li>
+
+            <li>
+                <span class="titulo">Lotação:</span>
+                <span>{{colaboradorDetalhes.dadosEmpresa.lotacao}}</span>
+            </li>
+
+            <li>
+                <span class="titulo">Departamento:</span>
+                <span>{{colaboradorDetalhes.dadosEmpresa.departamento}}</span>
+            </li>
+
+            <li>
+                <span class="titulo">Data de Admissão:</span>
+                <span>{{colaboradorDetalhes.dadosEmpresa.data_admissao}}</span>
+            </li>
+
+            <li>
+                <span class="titulo">Situação:</span>
+                <span>{{colaboradorDetalhes.dadosEmpresa.situacao}}</span>
+            </li>
+        </ul>
+
+        <button type="button" class="btn btn-default" style="font-size: 15px; padding: 5px;" (click)="FecharModal()">Fechar</button>
+      </div>
+
+  </ng-template>

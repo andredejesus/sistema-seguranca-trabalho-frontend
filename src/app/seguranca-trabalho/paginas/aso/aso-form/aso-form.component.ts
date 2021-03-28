@@ -10,6 +10,7 @@ import { AlertaSucessoComponent } from 'src/app/seguranca-trabalho/controller/al
 import { AlertaErroComponent } from 'src/app/seguranca-trabalho/controller/alertas/alerta-erro/alerta-erro.component';
 import { AlertService } from 'src/app/controller/service/alert.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { UtilService } from 'src/app/controller/service/util.service';
 
 
 @Component({
@@ -35,7 +36,8 @@ export class AsoFormComponent implements OnInit {
               private asoService: AsoService,
               private alertService: AlertService,
               private route: ActivatedRoute,
-              private router: Router) {
+              private router: Router,
+              private utilService: UtilService) {
                  this.route.params.subscribe(params => this.aso.id = params['id'])
                }
 
@@ -53,21 +55,11 @@ export class AsoFormComponent implements OnInit {
   }
 
   calculaDiasVencimentoAso(){
-    if(this.aso.data_emissao != null && this.aso.dias_vencimento != null){
-      const dataEmissao = moment(this.aso.data_emissao);
-      dataEmissao.add(this.aso.dias_vencimento, 'days');
-      this.aso.data_vencimento = dataEmissao.format('YYYY-MM-DD');
-    }
-    
+    this.aso.data_vencimento = this.utilService.calculaVencimento(this.aso.data_emissao, this.aso.dias_vencimento );
   }
 
   calculaDiasVencimentoExame(){
-    if(this.exame.data_exame != null && this.exame.dias_vencimento != null){
-      const dataCadastroExame = moment(this.exame.data_exame);
-      dataCadastroExame.add(this.exame.dias_vencimento, 'days');
-      this.exame.data_vencimento = dataCadastroExame.format('YYYY-MM-DD');
-    }
-    
+    this.exame.data_vencimento = this.utilService.calculaVencimento(this.exame.data_exame, this.exame.dias_vencimento );
   }
 
   salvarAso(){
