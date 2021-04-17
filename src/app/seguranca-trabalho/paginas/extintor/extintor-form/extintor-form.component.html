@@ -10,6 +10,9 @@
 
         <form #form="ngForm" (ngSubmit)="salvaExtintor(); form.reset()">
 
+            <input type="hidden" class="form-control" name="id" [(ngModel)]="extintor.id" id="id" >
+
+
             <div class="form-row" style="display: flex; flex-wrap: wrap;">
             
                 <div class="col-md-3">

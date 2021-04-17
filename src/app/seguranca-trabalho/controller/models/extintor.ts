@@ -10,4 +10,5 @@ export class Extintor {
     dias_vencimento: number;
     data_vencimento: string;
     localizacao: string;
+    situacao: string;
 }

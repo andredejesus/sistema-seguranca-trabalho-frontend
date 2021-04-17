@@ -1,0 +1,92 @@
+<app-alerta-sucesso></app-alerta-sucesso>
+<app-alerta-erro></app-alerta-erro>
+
+<header>
+    <h6>Extintores</h6>
+    <button type="button" class="btn btn-default" style="display:none;" routerLink="/extintor-form">Cadastrar
+        Extintor</button>
+</header>
+
+<div class="card card-filtro">
+
+    <div class="card-header">
+        <i class="fa fa-filter" aria-hidden="true"></i> Filtro
+    </div>
+    <div class="card-body">
+
+        <form #form="ngForm" class="form-filtro">
+
+            <div class="form-row" style="display: flex; flex-wrap: wrap;">
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+<h6>Resultado</h6>
+
+<div class="card">
+    <div class="card-body" style="display: flex; justify-content: space-between; padding: 10px 10px;">
+
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>Patrimônio</th>
+                        <th>Lacre</th>
+                        <th>Inmetro</th>
+                        <th>Tipo</th>
+                        <th>LT/KG</th>
+                        <th>Data Recarga</th>
+                        <th>Status</th>
+                        <th>Localização</th>
+                        <th>Ação</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let extintor of extintores">
+                        <td>{{extintor.nuPatrimonio}}</td>
+                        <td>{{extintor.lacre}}</td>
+                        <td>{{extintor.nuInmetro}}</td>
+                        <td>{{extintor.tipo}}</td>
+                        <td>{{extintor.ltKg}}</td>
+                        <td>{{extintor.data_recarga | date : 'dd/MM/yyyy'}}</td>
+                        <td [ngSwitch]="extintor.situacao">
+                            <span *ngSwitchCase="'Válido'">
+                                <i class="fa fa-check-circle text-success mr-1" aria-hidden="true"></i> {{extintor.situacao}}
+                            </span>
+                            <span *ngSwitchCase="'À Vencer'">
+                                <i class="fa fa-exclamation-triangle text-warning mr-1" aria-hidden="true"></i> {{extintor.situacao}}
+                            </span>
+                            <span *ngSwitchCase="'Vencido'">
+                                <i class="fa fa-times-circle text-danger mr-1" aria-hidden="true"></i> {{extintor.situacao}}
+                            </span>
+                        </td>
+                        <td>{{extintor.localizacao}}</td>
+                        
+
+
+                        <td>
+
+                            <a role="button" class="btn btn-warning btn-notebook"
+                                (click)="redirecionaParaEdicao(extintor.id)"><i class="fa fa-pencil"
+                                    aria-hidden="true"></i></a>
+                            <a role="button" class="btn btn-danger btn-notebook"
+                                (click)="deletaExtintor(extintor.id)"><i class="fa fa-trash" aria-hidden="true"></i></a>
+
+                        </td>
+                    </tr>
+                </tbody>
+
+                <div *ngIf="extintores == null" style="margin-top:15px; margin-bottom: 5px; ">
+                    <span>Nenhum resultado encontrado.</span>
+                </div>
+
+            </table>
+        </div>
+
+    </div>
+</div>

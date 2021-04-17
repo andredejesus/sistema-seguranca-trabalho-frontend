@@ -22,4 +22,16 @@ export class ExtintorService {
     return this.http.get<Extintor>(`${environment.API}/${this.apiURL}`);
   }
 
+  buscaExtintorPorId(id: number): Observable<any>{
+    return this.http.get<Extintor>(`${environment.API}/${this.apiURL}/${id}`);
+  }
+
+  alteraExtintor(id: number, extintor: Extintor): Observable<any>{
+    return this.http.put<Extintor>(`${environment.API}/${this.apiURL}/${id}`, extintor);
+  }
+
+  deletaExtintor(id: number):Observable<any>{
+    return this.http.delete<Extintor>(`${environment.API}/${this.apiURL}/${id}`);
+  }
+
 }

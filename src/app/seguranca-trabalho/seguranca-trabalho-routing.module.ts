@@ -9,6 +9,7 @@ import { AsoListComponent } from './paginas/aso/aso-list/aso-list.component';
 import { TreinamentoFormComponent } from './paginas/treinamento/treinamento-form/treinamento-form.component';
 import { TreinamentoListComponent } from './paginas/treinamento/treinamento-list/treinamento-list.component';
 import { ExtintorFormComponent } from './paginas/extintor/extintor-form/extintor-form.component';
+import { ExtintorListComponent } from './paginas/extintor/extintor-list/extintor-list.component';
 
 
 const routes: Routes = [
@@ -26,7 +27,9 @@ const routes: Routes = [
     {path: 'treinamento-list', component: TreinamentoListComponent},
     {path: 'treinamento/:id', component: TreinamentoFormComponent},
 
-    {path: 'extintor-form', component: ExtintorFormComponent}
+    {path: 'extintor-form', component: ExtintorFormComponent},
+    {path: 'extintor-list', component: ExtintorListComponent},
+    {path: 'extintor/:id', component: ExtintorFormComponent}
     
   ]}
   

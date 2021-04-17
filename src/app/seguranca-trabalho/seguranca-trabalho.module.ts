@@ -15,6 +15,7 @@ import { AsoListComponent } from './paginas/aso/aso-list/aso-list.component';
 import { TreinamentoFormComponent } from './paginas/treinamento/treinamento-form/treinamento-form.component';
 import { TreinamentoListComponent } from './paginas/treinamento/treinamento-list/treinamento-list.component';
 import { ExtintorFormComponent } from './paginas/extintor/extintor-form/extintor-form.component';
+import { ExtintorListComponent } from './paginas/extintor/extintor-list/extintor-list.component';
 
 
 
@@ -28,7 +29,8 @@ import { ExtintorFormComponent } from './paginas/extintor/extintor-form/extintor
     AsoListComponent, 
     TreinamentoFormComponent, 
     TreinamentoListComponent,
-    ExtintorFormComponent
+    ExtintorFormComponent,
+    ExtintorListComponent
   ],
   imports: [
     CommonModule,
