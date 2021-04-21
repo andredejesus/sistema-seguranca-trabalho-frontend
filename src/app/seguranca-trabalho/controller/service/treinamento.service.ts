@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, Subscriber } from 'rxjs';
-import { Treinamento } from '../models/treinamento';
+import { FiltroTreinamentoDTO, Treinamento } from '../models/treinamento';
 import { environment } from './../../../../environments/environment';
 
 @Injectable({
@@ -31,6 +31,10 @@ export class TreinamentoService {
 
   deletaTreinamento(id):Observable<any>{
     return this.http.delete<Treinamento>(`${environment.API}/${this.apiURL}/${id}`);
+  }
+
+  filtroTreinamento(filtroDto: FiltroTreinamentoDTO):Observable<any>{
+    return this.http.post<FiltroTreinamentoDTO>(`${environment.API}/${this.apiURL}/filtro`, filtroDto);
   }
 
 

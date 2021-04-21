@@ -13,20 +13,30 @@
     </div>
     <div class="card-body">
 
-        <form #form="ngForm" class="form-filtro">
+        <form #form="ngForm" class="form-filtro" (ngSubmit)="filtroTreinamento()">
 
             <div class="form-row" style="display: flex; flex-wrap: wrap;">
                 <div class="form-group col">
-                    <label for="colaborador">Colaborador*</label>
-                    <select class="form-control" id="colaborador" required name="colaborador">
-                        <option [ngValue]="undefined" selected>Selecione..</option>
-                        <option *ngFor="let colaborador of colaboradores">
-                            {{colaborador.nome}}
-                        </option>
-                      </select>
+                    <label for="colaborador">Colaborador</label>
+                    <input type="text" class="form-control" name="colaborador" id="colaborador" placeholder="Digite um nome" [(ngModel)]="filtroTreinamentoDto.nomeColaborador">
                 </div>
+
+                <div class="form-group col">
+                    <label for="treinamento">Treinamento</label>
+                    <input type="text" class="form-control" name="treinamento" id="treinamento" placeholder="Digite um treinamento" [(ngModel)]="filtroTreinamentoDto.nomeTreinamento">
+                </div>
+                <div class="form-group col-sm-3">
+                    <label for="data_inicio">Data Inicio</label>
+                    <input type="date" class="form-control" name="data_inicio" id="data_inicio" [(ngModel)]="filtroTreinamentoDto.dataInicioTreinamento">
+                </div>
+                <div class="form-group col-sm-3">
+                    <label for="data_fim">Data Fim</label>
+                    <input type="date" class="form-control" name="data_fim" id="data_fim" [(ngModel)]="filtroTreinamentoDto.dataFimTreinamento">
+                </div>
+
             </div>
-           
+
+            <button type="submit" class="btn btn-default">Pesquisar</button>
         </form>
 
     </div>

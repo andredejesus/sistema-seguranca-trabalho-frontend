@@ -18,16 +18,11 @@
             <div class="form-row" style="display: flex; flex-wrap: wrap;">
                 <div class="form-group col">
                     <label for="colaborador">Colaborador*</label>
-                    <select class="form-control" id="colaborador" required name="colaborador">
-                        <option [ngValue]="undefined" selected>Selecione..</option>
-                        <option>
-             
-                        </option>
-                      </select>
+                    <input type="text" class="form-control" name="colaborador" id="colaborador" [(ngModel)]="filtroDto.colaborador">
                 </div>
                 <div class="form-group col-sm-3">
                     <label for="tipo_aso">Tipo Aso</label>
-                    <select class="form-control" id="tipo_aso" name="tipo_aso">
+                    <select class="form-control" id="tipo_aso" name="tipo_aso" [(ngModel)]="filtroDto.tipoAso">
                         <option [ngValue]="undefined" selected>Selecione..</option>
                         <option>Admissional</option>
                         <option>Demissional</option>
@@ -35,12 +30,12 @@
                       </select>
                 </div>
                 <div class="form-group col-sm-3">
-                    <label for="data_emissao">Data Emissão</label>
-                    <input type="date" class="form-control" name="data_emissao" id="data_emissao">
+                    <label for="data_inicio">Data Inicio</label>
+                    <input type="date" class="form-control" name="data_inicio" id="data_inicio" [(ngModel)]="filtroDto.dataInicioEmissao">
                 </div>
                 <div class="form-group col-sm-3">
-                    <label for="data_vencimento">Data Vencimento</label>
-                    <input type="date" class="form-control" name="data_vencimento" id="data_vencimento">
+                    <label for="data_fim">Data Fim</label>
+                    <input type="date" class="form-control" name="data_fim" id="data_fim" [(ngModel)]="filtroDto.dataFimEmissao">
                 </div>
 
             </div>

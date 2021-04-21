@@ -28,3 +28,10 @@ export class Exame {
     id_aso: number;
     situacao:string;
 }
+
+export class FiltroDTO{
+    colaborador: string;
+	tipoAso: string;
+	dataInicioEmissao: string;
+	dataFimEmissao: string;
+}

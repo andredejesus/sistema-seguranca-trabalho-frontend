@@ -9,3 +9,13 @@ export class Treinamento {
     situacao: string;
 
 }
+
+export class FiltroTreinamentoDTO {
+    
+    nomeColaborador:string;
+    nomeTreinamento:string;
+    dataInicioTreinamento:string;
+    dataFimTreinamento:string;
+    
+
+}

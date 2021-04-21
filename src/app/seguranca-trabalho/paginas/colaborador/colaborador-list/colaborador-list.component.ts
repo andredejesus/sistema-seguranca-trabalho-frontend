@@ -87,7 +87,10 @@ export class ColaboradorListComponent implements OnInit, OnDestroy {
 
   filtroColaboradores(){
       this.colaboradorService.filtroColaboradores(this.filtroColaborador).subscribe(
-       res => this.colaboradores = res
+       res =>{
+        this.colaboradores = res
+        console.log('RESULTADO: ' + JSON.stringify(res));
+       } 
       );
   }
 

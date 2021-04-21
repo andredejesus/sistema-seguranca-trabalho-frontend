@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Subscriber, Observable } from 'rxjs';
-import { Exame, Aso } from './../models/aso';
+import { Exame, Aso, FiltroDTO } from './../models/aso';
 import { environment } from './../../../../environments/environment';
 
 @Injectable({
@@ -51,6 +51,11 @@ export class AsoService {
 
   deletaAso(id:number):Observable<Aso>{
     return this.http.delete<Aso>(`${environment.API}/${this.apiURL}/aso/${id}`);
+  }
+
+  filtroAso(filtroDTO: FiltroDTO):Observable<any>{
+    return this.http.post<FiltroDTO>(`${environment.API}/${this.apiURL}/aso/filtro`, filtroDTO);
+
   }
 
 

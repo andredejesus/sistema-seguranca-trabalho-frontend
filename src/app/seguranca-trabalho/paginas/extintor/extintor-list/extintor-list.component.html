@@ -18,6 +18,22 @@
 
             <div class="form-row" style="display: flex; flex-wrap: wrap;">
 
+                <div class="col-md-3">
+                    <label for="localizacao">Localização</label>
+                    <select class="form-control" id="localizacao" [(ngModel)]="extintor.localizacao" name="localizacao">
+                        <option [ngValue]="undefined" selected>Selecione..</option>
+                        <option>Escritorio Sede</option>
+                        <option>Porto (Corredor 1)</option>
+                        <option>Porto (Corredor 2)</option>
+                        <option>Porto Betoneira</option>
+                        <option>Central de Carpintaria</option>
+                        <option>Almoxarifado</option>
+                        <option>Refeitorio</option>
+                        <option>Cremalheira</option>
+                      </select>
+                
+                </div>
+
             </div>
 
         </form>

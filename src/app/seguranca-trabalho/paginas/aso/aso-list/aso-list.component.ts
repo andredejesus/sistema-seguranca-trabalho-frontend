@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { Aso } from 'src/app/seguranca-trabalho/controller/models/aso';
+import { Aso, FiltroDTO } from 'src/app/seguranca-trabalho/controller/models/aso';
 import { AsoService } from './../../../controller/service/aso.service';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { Subscription } from 'rxjs';
@@ -19,6 +19,7 @@ export class AsoListComponent implements OnInit {
   examesPorAso: Exame [] = [];
   exame: Exame = new Exame();
   aso: Aso = new Aso();
+  filtroDto = new FiltroDTO();
 
   status:boolean
 
@@ -108,6 +109,18 @@ export class AsoListComponent implements OnInit {
 }
 
   filtroAso(){
+
+    this.asoService.filtroAso(this.filtroDto).subscribe(
+      res =>{
+          this.listaDeAso = res;
+          this.verificaStatusAso();
+          console.log(JSON.stringify('Filtro Aso Retornado: ' + this.listaDeAso));
+          this.filtroDto = new FiltroDTO();
+      },
+      errorResponse =>{
+          console.log('Ocorreu algum erro ao retornar os dados do aso.' + errorResponse);
+      }
+    );
 
   }
 

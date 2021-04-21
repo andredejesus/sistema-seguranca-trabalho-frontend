@@ -5,8 +5,8 @@ import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { AlertaErroComponent } from 'src/app/controller/alertas/alerta-erro/alerta-erro.component';
 import { AlertService } from 'src/app/controller/service/alert.service';
 import { AlertaSucessoComponent } from 'src/app/seguranca-trabalho/controller/alertas/alerta-sucesso/alerta-sucesso.component';
-import { Colaborador } from 'src/app/seguranca-trabalho/controller/models/colaborador';
-import { Treinamento } from 'src/app/seguranca-trabalho/controller/models/treinamento';
+import { Colaborador, FiltroColaboradorDTO } from 'src/app/seguranca-trabalho/controller/models/colaborador';
+import { FiltroTreinamentoDTO, Treinamento } from 'src/app/seguranca-trabalho/controller/models/treinamento';
 import { ColaboradorService } from 'src/app/seguranca-trabalho/controller/service/colaborador.service';
 import { TreinamentoService } from 'src/app/seguranca-trabalho/controller/service/treinamento.service';
 import Swal from 'sweetalert2';
@@ -22,6 +22,7 @@ export class TreinamentoListComponent implements OnInit {
   treinamentos: Treinamento[];
   colaboradores: Colaborador[];
   colaboradorDetalhes: Colaborador = new Colaborador();
+  filtroTreinamentoDto: FiltroTreinamentoDTO = new FiltroTreinamentoDTO();
 
   treinamento = new Treinamento();
   metodosModalRef: BsModalRef;
@@ -136,6 +137,21 @@ export class TreinamentoListComponent implements OnInit {
 
   FecharModal(): void {
     this.metodosModalRef.hide();
+  }
+
+  filtroTreinamento(){
+    this.treinamentoService.filtroTreinamento(this.filtroTreinamentoDto).subscribe(
+      res =>{
+        this.treinamentos = res;
+        this.verificaStatusTreinamento();
+        console.log('Filtro Treinamentos: ' + JSON.stringify(this.treinamentos));
+        this.filtroTreinamentoDto = new FiltroTreinamentoDTO();
+      },
+      errorResponse =>{
+        console.log('Ocorreu um erro ao retornar os dados... ' + errorResponse);
+        
+      }
+    );
   }
 
 
