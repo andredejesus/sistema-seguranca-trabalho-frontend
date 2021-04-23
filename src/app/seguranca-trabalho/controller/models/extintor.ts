@@ -12,3 +12,12 @@ export class Extintor {
     localizacao: string;
     situacao: string;
 }
+
+export class FiltroExtintorDTO {
+    
+    localizacao:string;
+    dataInicioValidade:string;
+    dataFimValidade:string;
+    
+
+}

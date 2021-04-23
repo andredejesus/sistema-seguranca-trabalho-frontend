@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from './../../../../environments/environment';
 import { Observable } from 'rxjs';
-import { Extintor } from './../models/extintor';
+import { Extintor, FiltroExtintorDTO } from './../models/extintor';
 
 
 @Injectable({
@@ -32,6 +32,10 @@ export class ExtintorService {
 
   deletaExtintor(id: number):Observable<any>{
     return this.http.delete<Extintor>(`${environment.API}/${this.apiURL}/${id}`);
+  }
+
+  filtroExtintor(filtroExtintor: FiltroExtintorDTO):Observable<any>{
+    return this.http.post<FiltroExtintorDTO>(`${environment.API}/${this.apiURL}/filtro`, filtroExtintor);
   }
 
 }

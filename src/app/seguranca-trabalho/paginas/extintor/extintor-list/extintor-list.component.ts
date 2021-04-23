@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import * as moment from 'moment';
 import { Colaborador } from 'src/app/seguranca-trabalho/controller/models/colaborador';
-import { Extintor } from 'src/app/seguranca-trabalho/controller/models/extintor';
+import { Extintor, FiltroExtintorDTO } from 'src/app/seguranca-trabalho/controller/models/extintor';
 import { ExtintorService } from 'src/app/seguranca-trabalho/controller/service/extintor.service';
 import Swal from 'sweetalert2';
 
@@ -17,6 +17,8 @@ export class ExtintorListComponent implements OnInit {
   extintores: Extintor[];
 
   extintor: Extintor = new Extintor();
+
+  filtroExtintor: FiltroExtintorDTO = new FiltroExtintorDTO();
 
   constructor(private extintorService: ExtintorService,
               private router: Router,) { }
@@ -102,6 +104,20 @@ export class ExtintorListComponent implements OnInit {
      }
       
     });
-}
+  }
+
+  filtroExtintores(){
+    this.extintorService.filtroExtintor(this.filtroExtintor).subscribe(
+      res =>{
+        this.extintores = res;
+        this.verificaStatusExtintor();
+        this.filtroExtintor = new FiltroExtintorDTO();
+        console.log('Filtro Extintores: ' + JSON.stringify(this.extintores));
+      }, 
+      errorResponse =>{
+        console.log('Ocorreu um erro ao tentar realizar o filtro de extintores: ' + errorResponse);
+      }
+    );
+  }
 
 }
