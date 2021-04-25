@@ -1,0 +1,131 @@
+<div class="header">
+    <h5>Cadastrar</h5>
+    <a role="button" style="display:none;" routerLink="/checklist-list" class="btn btn-default">Consultar Checklist</a>
+</div>
+
+<div class="card">
+
+    <div class="card-body">
+
+        <form #form="ngForm" (ngSubmit)="salvaChecklist(); form.reset()">
+    
+            <div class="row" ngModelGroup="aso">
+
+                <input type="hidden" class="form-control" name="id" id="id">
+
+                <div class="col-md-4">
+                    <label for="local">Local / Obra</label>
+                        <select class="form-control" id="local" required name="local" [(ngModel)]="dadosChecklist.local">
+                            <option [ngValue]="undefined" selected>Selecione..</option>
+                            <option>ADM I</option>
+                            <option>ADM II</option>
+                            <option>Porto Seguro</option>
+                            <option>Central Park</option>
+                            <option>Tercerizado</option>
+                            <option>TGS</option>
+                        </select>
+                </div>
+
+                <div class="col-md-4">
+                    <label for="periodo_inicio">Período Inicio: </label>
+                    <input type="date" name="periodo_inicio" [(ngModel)]="dadosChecklist.periodo_inicio"  class="form-control" id="periodo_inicio" required>
+                </div>
+
+                <div class="col-md-4">
+                    <label for="periodo_fim">Período Final: </label>
+                    <input type="date" name="periodo_fim" [(ngModel)]="dadosChecklist.periodo_fim"  class="form-control" id="periodo_fim" required>
+                </div>
+
+                <div class="col-md-4">
+                    <label for="equipamento">Equipamento</label>
+                    <input type="text"  name="equipamento" class="form-control" [(ngModel)]="dadosChecklist.equipamento" placeholder="Digite um equipamento" id="equipamento">
+                </div> 
+
+                <div class="col-md-4">
+                    <label for="modelo">Modelo</label>
+                    <input type="text"  name="modelo" class="form-control" [(ngModel)]="dadosChecklist.modelo" placeholder="Digite um modelo" id="modelo">
+                </div> 
+
+                <div class="col-md-4">
+                    <label for="fabricante">Fabricante</label>
+                    <input type="text"  name="fabricante" placeholder="Digite um fabricante" [(ngModel)]="dadosChecklist.fabricante" class="form-control" id="fabricante">
+                </div> 
+
+                <div class="col-md-6">
+                    <label for="operador">Operador</label>
+                    <input type="text"  name="operador" placeholder="Digite um operador" [(ngModel)]="dadosChecklist.operador" class="form-control" id="operador">
+                </div> 
+
+                <div class="col-md-6">
+                    <label for="inspetor">Responsável Pela Inspeção </label>
+                    <input type="text"  name="inspetor" placeholder="Digite um inspetor" [(ngModel)]="dadosChecklist.inspetor" class="form-control" id="inspetor">
+                </div> 
+
+            </div>
+
+
+            <div class="div-adicionar-exames" >
+                <button type="button" class="btn btn-default" (click)="abrirModal()" >
+                    <i class="fa fa-plus-square fa-2x" aria-hidden="true"></i>
+                    <span>Adicionar Checklist</span>
+                </button>
+            </div>
+
+            <div class="table-responsive">
+            <table class="table table-hover" style="background-color: #f1f1f1;">
+                <thead>
+                    <tr>
+                        <th>Checklist</th>
+                        <th>Ação</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of checklistTemporario">
+                        <td>{{item.nomeChecklist}}</td>
+                        <td>
+                            <a role="button" class="btn btn-danger">
+                                <i class="fa fa-trash" aria-hidden="true"></i>
+                            </a>
+                        </td>
+
+                    </tr>
+                </tbody>
+
+                <div style="margin:10px; " *ngIf="checklistTemporario.length == 0">
+                    <span>Nenhum checklist inserido.</span>
+                </div>
+                
+            </table>
+        </div>
+            <button type="submit" class="btn btn-default mt-1 btn-salvar" >Salvar</button>
+
+        </form>
+      
+    </div>
+
+  </div>
+
+  <ng-template #modalChecklist>
+
+    <div class="modal-header bg-default " style="display: flex; justify-content: center;">
+        <h6 class="modal-title text-light" style="height: 20px;" >Adicionar Checklist</h6>
+    </div>
+
+    <div class="modal-body" >
+
+        <form #form="ngForm" (ngSubmit)="adicionarChecklist()">
+            <div ngModelGroup="checklists">
+
+                <div class="form-group">
+                    <label for="checklist">Nome do Checklist</label>
+                    <input type="text" class="form-control" [(ngModel)]="checklist.nomeChecklist"  name="checklist" id="checklist" placeholder="Checklist">
+                </div>
+
+            </div>
+            <button type="submit" class="btn btn-default" style="font-size: 15px; background-color: #16a085; color: #FFF; margin-right: 10px;">Incluir</button>
+            <button type="button" class="btn btn-danger" style="font-size: 15px; padding: 5px;" (click)="FecharModal()">Cancelar</button>    
+        </form>
+
+    </div>
+
+  </ng-template>

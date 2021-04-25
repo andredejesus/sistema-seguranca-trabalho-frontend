@@ -16,6 +16,8 @@ import { TreinamentoFormComponent } from './paginas/treinamento/treinamento-form
 import { TreinamentoListComponent } from './paginas/treinamento/treinamento-list/treinamento-list.component';
 import { ExtintorFormComponent } from './paginas/extintor/extintor-form/extintor-form.component';
 import { ExtintorListComponent } from './paginas/extintor/extintor-list/extintor-list.component';
+import { ChecklistFormComponent } from './paginas/checklist/checklist-form/checklist-form.component';
+import { ChecklistListComponent } from './paginas/checklist/checklist-list/checklist-list.component';
 
 
 
@@ -30,7 +32,9 @@ import { ExtintorListComponent } from './paginas/extintor/extintor-list/extintor
     TreinamentoFormComponent, 
     TreinamentoListComponent,
     ExtintorFormComponent,
-    ExtintorListComponent
+    ExtintorListComponent,
+    ChecklistFormComponent,
+    ChecklistListComponent
   ],
   imports: [
     CommonModule,
@@ -46,7 +50,9 @@ import { ExtintorListComponent } from './paginas/extintor/extintor-list/extintor
     AsoListComponent,
     TreinamentoFormComponent,
     TreinamentoListComponent,
-    ExtintorFormComponent
+    ExtintorFormComponent,
+    ChecklistFormComponent,
+    ChecklistListComponent
   ],
   providers: [
 

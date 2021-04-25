@@ -10,6 +10,8 @@ import { TreinamentoFormComponent } from './paginas/treinamento/treinamento-form
 import { TreinamentoListComponent } from './paginas/treinamento/treinamento-list/treinamento-list.component';
 import { ExtintorFormComponent } from './paginas/extintor/extintor-form/extintor-form.component';
 import { ExtintorListComponent } from './paginas/extintor/extintor-list/extintor-list.component';
+import { ChecklistFormComponent } from './paginas/checklist/checklist-form/checklist-form.component';
+import { ChecklistListComponent } from './paginas/checklist/checklist-list/checklist-list.component';
 
 
 const routes: Routes = [
@@ -29,7 +31,10 @@ const routes: Routes = [
 
     {path: 'extintor-form', component: ExtintorFormComponent},
     {path: 'extintor-list', component: ExtintorListComponent},
-    {path: 'extintor/:id', component: ExtintorFormComponent}
+    {path: 'extintor/:id', component: ExtintorFormComponent},
+
+    {path: 'checklist-form', component: ChecklistFormComponent},
+    {path: 'checklist-list', component: ChecklistListComponent}
     
   ]}
   
