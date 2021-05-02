@@ -8,9 +8,13 @@ export class DadosChecklist {
     fabricante: string;
     operador: string;
     inspetor: string;
-    checklists: Checklist[];
 }
 
 export class Checklist {
     nomeChecklist: string;
+}
+
+export class ChecklistDTO{
+    cabecalhoChecklist: DadosChecklist;
+    checklists: Checklist[];
 }
