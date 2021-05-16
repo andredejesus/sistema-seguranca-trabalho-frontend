@@ -6,6 +6,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MenuComponent } from './template/menu/menu.component';
 import { FormsModule } from "@angular/forms";
+import { NgxSpinnerModule } from "ngx-spinner";
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { SegurancaTrabalhoModule } from './seguranca-trabalho/seguranca-trabalho.module';
 import { DashboardComponent } from './dashboard/dashboard.component';
@@ -25,14 +27,16 @@ import { AlertaErroComponent } from './controller/alertas/alerta-erro/alerta-err
     AlertaErroComponent,
   ],
   imports: [
-BrowserModule,
+    BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    SegurancaTrabalhoModule
+    SegurancaTrabalhoModule,
+    NgxSpinnerModule,
+    BrowserAnimationsModule
   ],
   exports:[
-
+    NgxSpinnerModule
   ],
   providers: [
 

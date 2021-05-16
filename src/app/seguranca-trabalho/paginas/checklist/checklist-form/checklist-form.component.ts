@@ -56,6 +56,7 @@ export class ChecklistFormComponent implements OnInit {
         if(!response.temErro){
 
           this.alertService.success('Checklist salvo com sucesso!');
+          this.checklistTemporario = [];
           console.log('LOG: ' + JSON.stringify(response));
 
         }
@@ -73,6 +74,16 @@ export class ChecklistFormComponent implements OnInit {
 
       }
     );
+
+  }
+
+  deletaItemChecklist(checklist){
+
+    const index = this.checklistTemporario.indexOf(checklist);
+
+    if(index > -1){
+      this.checklistTemporario.splice(index, 1);
+    }
 
   }
 

@@ -16,11 +16,16 @@ export class AuthGuard implements CanActivate {
 
       const autenticacao = this.authService.verificarAutenticacao();
 
+      //Verifica se o token expirou, caso tenha expirado é encerrado a sessão e direcionado para tela de login.
       if(autenticacao){
-          return true;
-      }else{
+
+        this.authService.encerrarSessao();
         this.router.navigateByUrl('/login')
+        
         return false;
+
+      }else if(!autenticacao){
+        return true;
       }
   }
   

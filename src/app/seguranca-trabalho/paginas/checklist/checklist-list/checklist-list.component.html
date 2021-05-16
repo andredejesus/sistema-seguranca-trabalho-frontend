@@ -1,1 +1,136 @@
-<p>checklist-list works!</p>
+<app-alerta-sucesso></app-alerta-sucesso>
+<app-alerta-erro></app-alerta-erro>
+
+<header>
+    <h6>Checklists</h6>
+    <button type="button" class="btn btn-default" style="display:none;" routerLink="/extintor-form">Cadastrar Checklist</button>
+</header>
+
+<div class="card card-filtro">
+
+    <div class="card-header">
+        <i class="fa fa-filter" aria-hidden="true"></i> Filtro
+    </div>
+    <div class="card-body">
+
+        <form #form="ngForm" class="form-filtro">
+
+            <div class="form-row" style="display: flex; flex-wrap: wrap;">
+
+                <div class="col-md-3">
+                    <label for="localizacao">Localização</label>
+                    <select class="form-control" id="localizacao" name="localizacao">
+                        <option [ngValue]="undefined" selected>Selecione..</option>
+                        <option>Escritorio Sede</option>
+                        <option>Porto (Corredor 1)</option>
+                        <option>Porto (Corredor 2)</option>
+                        <option>Porto Betoneira</option>
+                        <option>Central de Carpintaria</option>
+                        <option>Almoxarifado</option>
+                        <option>Refeitorio</option>
+                        <option>Cremalheira</option>
+                      </select>
+                
+                </div>
+
+                <div class="form-group col-sm-3">
+                    <label for="data_inicio">Data Inicio</label>
+                    <input type="date" class="form-control" name="data_inicio" id="data_inicio">
+                </div>
+                <div class="form-group col-sm-3">
+                    <label for="data_fim">Data Fim</label>
+                    <input type="date" class="form-control" name="data_fim" id="data_fim">
+                </div>
+
+            </div>
+
+            <button type="submit" class="btn btn-default">Pesquisar</button>
+
+        </form>
+
+    </div>
+
+</div>
+
+<h6>Resultado</h6>
+
+<div class="card">
+    <div class="card-body" style="display: flex; justify-content: space-between; padding: 10px 10px;">
+
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>Checklist</th>
+                        <th>Local/Obra</th>
+                        <th>Equipamento</th>
+                        <th>Modelo</th>
+                        <th>Ação</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let cabecalho of listaCabecalhos">
+                        <td>{{cabecalho.operador}}</td>
+                        <td>{{cabecalho.local}}</td>
+                        <td>{{cabecalho.equipamento}}</td>
+                        <td>{{cabecalho.modelo}}</td>
+                        <td>
+                            <a role="button" class="btn btn-default" (click)="abrirModalChecklist(cabecalho.id)" style="background-color:#16a085;">
+                                <i class="fa fa-search" aria-hidden="true"></i>
+                            </a>
+                            <a role="button" class="btn btn-warning btn-notebook"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+                            <a role="button" class="btn btn-danger btn-notebook"><i class="fa fa-trash" aria-hidden="true"></i></a>
+                        </td>
+                    </tr>
+                    
+                </tbody>
+
+               <div *ngIf="listaCabecalhos.length == 0" style="margin-top:15px; margin-bottom: 5px; ">
+                    <span>Nenhum resultado encontrado.</span>
+                </div>
+
+            </table>
+        </div>
+
+    </div>
+</div>
+
+<ng-template #modalChecklists >
+
+    <div class="modal-header" style="display: flex; justify-content: center; background-color: #16a085;">
+        <h6 class="modal-title text-light" style="height: 20px;">Checklists</h6>
+      </div>
+
+      <div class="modal-body modalDetalhes" >
+
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Checklist</th>
+                        <th>Ação</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let check of checklists">
+                        <td>{{check.id}}</td>
+                        <td>{{check.nomeChecklist}}</td>
+                        <td>
+                            <a role="button" class="btn btn-info"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+                        </td>
+                    </tr>
+                    
+                </tbody>
+
+               <div *ngIf="checklists.length == 0" style="margin-top:15px; margin-bottom: 5px; ">
+                    <span>Nenhum resultado encontrado.</span>
+                </div>
+
+            </table>
+        </div>
+
+        <button type="button" class="btn btn-default" style="font-size: 15px; padding: 5px;" (click)="FecharModal()">Fechar</button>
+      </div>
+
+  </ng-template>

@@ -11,7 +11,9 @@ export class DadosChecklist {
 }
 
 export class Checklist {
+    id: string;
     nomeChecklist: string;
+    idCabecalhoChecklist: string;
 }
 
 export class ChecklistDTO{

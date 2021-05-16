@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../controller/service/auth.service';
 import { AlertaErroComponent } from '../controller/alertas/alerta-erro/alerta-erro.component';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-login',
@@ -18,19 +19,28 @@ export class LoginComponent implements OnInit {
 
   @ViewChild(AlertaErroComponent, {static: false}) msgErro: AlertaErroComponent;
 
-  constructor(private authService: AuthService, private route: Router) { }
+  constructor(private authService: AuthService, 
+              private route: Router,
+              private spinner: NgxSpinnerService) { }
 
   ngOnInit() {
   }
 
   realizarLogin(){
+    this.spinner.show();
+
     this.authService.tentarLogar(this.username, this.password).subscribe(
       res => {
-        
-        const access_token = JSON.stringify(res);
-        localStorage.setItem('access_token', access_token);
-        this.route.navigate(['dashboard']);
 
+        setTimeout(() => {
+          const access_token = JSON.stringify(res);
+          localStorage.setItem('access_token', access_token);
+        
+          this.route.navigate(['dashboard']);
+          this.spinner.hide();
+        }, 3000);
+        
+        
     }, 
     
     erroResponse => {

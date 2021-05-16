@@ -24,7 +24,6 @@ export class AuthService {
 
     obterToken(){
       const tokenString = localStorage.getItem('access_token');
-
       if(tokenString){
         const token = JSON.parse(tokenString).access_token
         //const currentDate = new Date().getTime(); 
@@ -51,11 +50,16 @@ export class AuthService {
     verificarAutenticacao() : boolean{
       const token = this.obterToken();
 
-      if(token){
-        const expired = this.jwtHelper.isTokenExpired(token)
+      const expired = this.jwtHelper.isTokenExpired(token)
+
+      if(expired){
+        console.log('Login expirado!')
         return true;   
+      }else if(!token){
+        console.log('Login não expirado! : ')
+        return false;
       }
-      return false;
+      
     }
 
   tentarLogar(username: string, password: string) : Observable<any>{

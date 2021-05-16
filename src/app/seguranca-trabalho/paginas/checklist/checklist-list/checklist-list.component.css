@@ -1,0 +1,100 @@
+
+/* Classes titulo topo da página */
+
+header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+header .btn{
+    background-color: #16a085;
+    color: #fff;
+}
+
+/* Classes do Filtro */
+
+.card{
+    box-shadow: 0px 0px 3px #c3c3c3;
+}
+
+.card-filtro{
+    margin-bottom: 10px;
+}
+
+.card-filtro .card-header{
+    background-color: #fff;
+    padding: 5px 10px;
+}
+
+.form-filtro input, select{
+    height: 32px;
+    font-size: 12px;
+}
+
+
+.card-filtro .form-filtro .btn{
+    font-size: 15px;
+    background-color: #16a085;
+}
+
+.card-filtro .form-filtro .form-row{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+
+.card .btn{
+    margin-left: 5px;
+    color: #fff;
+    padding: 5px;
+    font-size: 10px;
+}
+
+modalDetalhes ul{
+    list-style-type: none;
+    padding: 0; 
+    display: block;
+}
+
+.modalDetalhes .btn-default{
+    background-color: #16a085;
+    color: #fff;
+}
+
+modalDetalhes ul li .titulo{
+    margin-right: 10px;
+    font-weight: 500;
+    margin-left: 10px;
+}
+
+modalDetalhes h6{
+    padding: 5px 10px;
+    background-color: #16a085;
+    color: #fff;
+}
+
+@media only screen and (max-width: 575px) {
+
+    .coluna-table-tablet, .coluna-table-notebook {
+        display: none;
+    }
+
+}
+
+@media only screen and (min-width: 576px) {
+
+    .coluna-table-tablet {
+        display: none;
+    }
+
+}
+
+@media only screen and (min-width: 768px) {
+    .coluna-table-tablet {
+        display: block;
+    }
+}
+

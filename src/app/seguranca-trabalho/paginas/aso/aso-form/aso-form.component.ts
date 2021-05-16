@@ -130,7 +130,7 @@ export class AsoFormComponent implements OnInit {
 
     const index = this.examesTemporarios.indexOf(exame);
     
-    this.examesAdeletar.push(exame);
+    //this.examesAdeletar.push(exame);
 
       if(index > -1){
         this.examesTemporarios.splice(index, 1);

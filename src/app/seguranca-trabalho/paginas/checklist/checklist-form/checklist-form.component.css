@@ -32,7 +32,7 @@
     color: #fff;
 }
 
-.card-body .div-adicionar-exames{
+.card-body .div-adicionar-checklist{
     display: flex;
     flex-wrap: wrap;
     align-items: center;
@@ -40,7 +40,7 @@
     padding: 10px 0;
 }
 
-.card-body .div-adicionar-exames i{
+.card-body .div-adicionar-checklist i{
     color: #16a085;
     margin-right: 10px;
     cursor: pointer;

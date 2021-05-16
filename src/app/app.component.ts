@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AuthService } from './controller/service/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -7,12 +8,14 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
 
+
+  constructor(private authService: AuthService) { }
+
   ngOnInit() {
 
-    //document.querySelector('header i').addEventListener('click', ()=>{
-       // document.querySelector('aside').classList.toggle('show');
-       // document.querySelector('.menu .fa-times').classList.add('show');
-    //})
+   // if(this.authService.verificarAutenticacao){
+     // this.authService.encerrarSessao();
+    //}
 
 }
 

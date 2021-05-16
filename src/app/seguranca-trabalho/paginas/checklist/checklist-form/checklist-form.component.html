@@ -64,7 +64,7 @@
             </div>
 
 
-            <div class="div-adicionar-exames" >
+            <div class="div-adicionar-checklist" >
                 <button type="button" class="btn btn-default" (click)="abrirModal()" >
                     <i class="fa fa-plus-square fa-2x" aria-hidden="true"></i>
                     <span>Adicionar Checklist</span>
@@ -83,7 +83,7 @@
                     <tr *ngFor="let item of checklistTemporario">
                         <td>{{item.nomeChecklist}}</td>
                         <td>
-                            <a role="button" class="btn btn-danger">
+                            <a role="button" class="btn btn-danger" (click)="deletaItemChecklist(item)">
                                 <i class="fa fa-trash" aria-hidden="true"></i>
                             </a>
                         </td>
