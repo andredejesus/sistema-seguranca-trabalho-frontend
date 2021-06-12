@@ -120,4 +120,18 @@ export class ExtintorListComponent implements OnInit {
     );
   }
 
+
+  gerarCSV(){
+
+    this.extintorService.gerarCSV().subscribe(
+      res =>{
+        
+        this.extintorService.downloadArquivosUtil(res)
+    }), 
+    errorResponse =>{
+      console.log('Ocorreu um erro ao listar os extintores: ' + errorResponse)
+    };
+
+  }
+
 }

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { environment } from './../../../../environments/environment';
 import { Observable } from 'rxjs';
 import { Extintor, FiltroExtintorDTO } from './../models/extintor';
@@ -36,6 +36,43 @@ export class ExtintorService {
 
   filtroExtintor(filtroExtintor: FiltroExtintorDTO):Observable<any>{
     return this.http.post<FiltroExtintorDTO>(`${environment.API}/${this.apiURL}/filtro`, filtroExtintor);
+  }
+
+  gerarCSV(): Observable<any>{
+    return this.http.get<any>(`${environment.API}/${this.apiURL}/exportar-csv`, {responseType: 'blob' as 'json'});
+  }
+
+  downloadArquivosUtil(res: any){
+    const file = new Blob([res], {
+      type: res.type
+    });
+
+    // Internet Explorer
+    if(window.navigator && window.navigator.msSaveOrOpenBlob){
+      window.navigator.msSaveOrOpenBlob(file);
+      return;
+    }
+
+    const blob = window.URL.createObjectURL(file);
+
+    const link = document.createElement('a');
+    link.href = blob;
+    var dataArquivo = new Date();
+    const filename = 'relatorio_extintores_' + dataArquivo.toISOString().substr(0, 10).split('-').reverse().join('_');
+    link.download = filename+'.csv'
+
+    //link.click();
+
+    link.dispatchEvent(new MouseEvent('click', {
+      bubbles: true,
+      cancelable: true,
+      view: window
+    }));
+
+    setTimeout(()=>{
+      window.URL.revokeObjectURL(blob);
+      link.remove();
+    }, 100)
   }
 
 }
