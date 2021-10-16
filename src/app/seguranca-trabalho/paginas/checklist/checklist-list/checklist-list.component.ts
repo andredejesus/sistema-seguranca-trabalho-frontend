@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
-import { Checklist, ChecklistDTO, DadosChecklist } from 'src/app/seguranca-trabalho/controller/models/checklist';
+import { CabecalhoChecklist, Checklist, ChecklistDTO} from 'src/app/seguranca-trabalho/controller/models/checklist';
 import { ChecklistService } from 'src/app/seguranca-trabalho/controller/service/checklist.service';
 
 @Component({
@@ -15,7 +15,7 @@ export class ChecklistListComponent implements OnInit {
 
   checklists: Checklist[] = [];
 
-  listaCabecalhos: DadosChecklist[] = [];
+  listaCabecalhos: CabecalhoChecklist[] = [];
 
   metodosModalRef: BsModalRef;
 
@@ -31,9 +31,8 @@ export class ChecklistListComponent implements OnInit {
   listaChecklists(){
     this.checklistService.listaCabecalhos().subscribe(
       res =>{
-        this.listaCabecalhos = res.listaCabecalhos;
+        this.listaCabecalhos = res
         console.log(JSON.stringify(this.listaCabecalhos));
-        //console.log(JSON.stringify(this.checklistsDTO));
       }, 
       resError =>{
         console.log('Ocorreu um erro ao listar os checklists');
@@ -49,8 +48,8 @@ export class ChecklistListComponent implements OnInit {
 
     this.checklistService.listaChecklists(idCabecalho).subscribe(
       res=>{
-          this.checklists = res.checklists;
-          console.log('CHECKLISTS: ' + JSON.stringify(this.checklists));
+          this.checklists = res;
+
       }, 
       resError =>{
         console.log('Ocorreu um erro ao listar o checklist');

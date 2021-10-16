@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { AlertService } from 'src/app/controller/service/alert.service';
-import { Checklist, ChecklistDTO, DadosChecklist } from './../../../controller/models/checklist';
+import { CabecalhoChecklist, Checklist, ChecklistDTO } from './../../../controller/models/checklist';
 import { ChecklistService} from './../../../controller/service/checklist.service';
 
 @Component({
@@ -11,7 +11,7 @@ import { ChecklistService} from './../../../controller/service/checklist.service
 })
 export class ChecklistFormComponent implements OnInit {
 
-  dadosChecklist: DadosChecklist = new DadosChecklist();
+  dadosChecklist: CabecalhoChecklist = new CabecalhoChecklist();
   checklist: Checklist = new Checklist();
   checklistTemporario: Checklist[] = [];
 
@@ -45,11 +45,10 @@ export class ChecklistFormComponent implements OnInit {
   }
 
   salvaChecklist(){
-
-    this.checklistDTO.checklists = this.checklistTemporario;
-    this.checklistDTO.cabecalhoChecklist = this.dadosChecklist;
     
-    this.checklistService.salvaChecklist(this.checklistDTO).subscribe(
+    this.dadosChecklist.checklists = this.checklistTemporario;
+
+    this.checklistService.salvaChecklist(this.dadosChecklist).subscribe(
       
       response =>{
 

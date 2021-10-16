@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import {Checklist, ChecklistDTO, DadosChecklist } from '../models/checklist';
+import {CabecalhoChecklist, Checklist} from '../models/checklist';
 import { environment } from './../../../../environments/environment';
 
 @Injectable({
@@ -14,12 +14,12 @@ export class ChecklistService {
   constructor(private http: HttpClient) { }
 
 
-  salvaChecklist(checklistDTO: ChecklistDTO): Observable<any>{
-    return this.http.post<ChecklistDTO>(`${environment.API}/${this.apiURL}/salvaChecklist`, checklistDTO);
+  salvaChecklist(cabecalhoChecklistDTO: CabecalhoChecklist): Observable<any>{
+    return this.http.post<CabecalhoChecklist>(`${environment.API}/${this.apiURL}/salvaChecklist`, cabecalhoChecklistDTO);
   }
 
   listaCabecalhos(): Observable<any>{
-    return this.http.get<DadosChecklist>(`${environment.API}/${this.apiURL}/listaCabecalhos`)
+    return this.http.get<CabecalhoChecklist>(`${environment.API}/${this.apiURL}/listaCabecalhos`)
   }
 
   listaChecklists(idCabecalho): Observable<any>{

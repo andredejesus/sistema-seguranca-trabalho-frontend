@@ -1,4 +1,4 @@
-export class DadosChecklist {
+export class CabecalhoChecklist {
 
     local: string;
     periodo_inicio: string;
@@ -8,6 +8,7 @@ export class DadosChecklist {
     fabricante: string;
     operador: string;
     inspetor: string;
+    checklists: ChecklistDTO[];
 }
 
 export class Checklist {
@@ -17,6 +18,6 @@ export class Checklist {
 }
 
 export class ChecklistDTO{
-    cabecalhoChecklist: DadosChecklist;
-    checklists: Checklist[];
+    id:string;
+	nomeChecklist:string;
 }
